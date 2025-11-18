@@ -35,25 +35,38 @@ const AccommodationManager = ({ accommodations, onAccommodationsChange, onAccomm
       }
     };
     
+    // Проверяем наличие новых объектов из нового окна
+    const checkForNewAccommodation = () => {
+      const newAccommodationData = localStorage.getItem('newAccommodation');
+      if (newAccommodationData) {
+        const newAccommodation = JSON.parse(newAccommodationData);
+        onAccommodationsChange([...accommodations, newAccommodation]);
+        localStorage.removeItem('newAccommodation');
+        showNotification('Новый объект размещения успешно добавлен', 'success');
+      }
+    };
+    
     window.addEventListener('editAccommodation', handleEditAccommodation);
     window.addEventListener('deleteAccommodation', handleDeleteAccommodation);
+    window.addEventListener('storage', checkForNewAccommodation);
+    
+    // Проверяем при загрузке компонента
+    checkForNewAccommodation();
     
     return () => {
       window.removeEventListener('editAccommodation', handleEditAccommodation);
       window.removeEventListener('deleteAccommodation', handleDeleteAccommodation);
+      window.removeEventListener('storage', checkForNewAccommodation);
     };
   }, [accommodations]);
 
   const handleAddAccommodation = () => {
-    setEditingAccommodation(null);
-    setFormData({
-      name: '',
-      description: '',
-      address: '',
-      price: ''
-    });
-    setErrors({});
-    setShowForm(true);
+    // Открываем новое окно с формой добавления объекта
+    const formWindow = window.open('/src/components/AddAccommodationWindow.jsx', '_blank', 'width=600,height=700');
+    
+    if (!formWindow) {
+      showNotification('Не удалось открыть новое окно. Пожалуйста, разрешите всплывающие окна для этого сайта.', 'error');
+    }
   };
 
   const handleEditAccommodation = (accommodation) => {

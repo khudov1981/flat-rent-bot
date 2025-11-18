@@ -2,37 +2,71 @@ import { Telegraf } from 'telegraf';
 import config from './config.js';
 import { sendTelegramMessage, formatBookingNotification } from './telegramUtils.js';
 
+// Константы
+const APP_URL = 'https://smsforward2.sourcecraft.site/flat-rent-bot';
+const START_MESSAGE = 'Привет! Я бот для управления бронированиями. Напишите /help для получения списка команд.';
+const HELP_MESSAGE = `Доступные команды:
+/start - Начать работу с ботом
+/help - Получить список команд
+/book - Забронировать даты`;
+
 // Создаем экземпляр бота
 const bot = new Telegraf(config.BOT_TOKEN);
 
+// Функция для безопасной отправки сообщений с обработкой ошибок
+const safeReply = async (ctx, message) => {
+  try {
+    await ctx.reply(message);
+  } catch (error) {
+    console.error('Ошибка при отправке сообщения:', error);
+  }
+};
+
 // Обработчик команды /start
-bot.start((ctx) => {
-  ctx.reply('Привет! Я бот для управления бронированиями. Напишите /help для получения списка команд.');
+bot.start(async (ctx) => {
+  await safeReply(ctx, START_MESSAGE);
 });
 
 // Обработчик команды /help
-bot.help((ctx) => {
-  ctx.reply('Доступные команды:
-/start - Начать работу с ботом
-/help - Получить список команд
-/book - Забронировать даты');
+bot.help(async (ctx) => {
+  await safeReply(ctx, HELP_MESSAGE);
 });
 
 // Обработчик команды /book
-bot.command('book', (ctx) => {
-  ctx.reply('Для бронирования дат, пожалуйста, используйте наше приложение. Вы можете получить к нему доступ по ссылке: https://smsforward2.sourcecraft.site/flat-rent-bot');
+bot.command('book', async (ctx) => {
+  await safeReply(ctx, `Для бронирования дат, пожалуйста, используйте наше приложение. Вы можете получить к нему доступ по ссылке: ${APP_URL}`);
 });
 
 // Обработчик текстовых сообщений
-bot.on('text', (ctx) => {
-  ctx.reply('Извините, я не понимаю текстовые сообщения. Пожалуйста, используйте команды или наше приложение для бронирования.');
+bot.on('text', async (ctx) => {
+  await safeReply(ctx, 'Извините, я не понимаю текстовые сообщения. Пожалуйста, используйте команды или наше приложение для бронирования.');
 });
 
-// Запуск бота
-bot.launch();
+// Обработчик ошибок бота
+bot.catch((err, ctx) => {
+  console.error(`Ошибка бота для ${ctx.updateType}`, err);
+});
+
+// Запуск бота с обработкой ошибок
+const startBot = async () => {
+  try {
+    await bot.launch();
+    console.log('Telegram bot is running...');
+  } catch (error) {
+    console.error('Ошибка запуска бота:', error);
+    process.exit(1);
+  }
+};
+
+startBot();
 
 // Включаем плавное завершение
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));
+process.once('SIGINT', () => {
+  console.log('Получен сигнал SIGINT. Завершение работы бота...');
+  bot.stop('SIGINT');
+});
 
-console.log('Telegram bot is running...');
+process.once('SIGTERM', () => {
+  console.log('Получен сигнал SIGTERM. Завершение работы бота...');
+  bot.stop('SIGTERM');
+});
