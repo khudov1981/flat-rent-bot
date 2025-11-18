@@ -143,6 +143,7 @@ function App() {
   }
 
   const handleTabChange = (tab) => {
+    console.log('handleTabChange called with tab:', tab);
     setActiveTab(tab)
   }
 
@@ -170,6 +171,8 @@ function App() {
       </div>
     )
   }
+
+  console.log('App rendering with activeTab:', activeTab, 'and user:', user);
 
   return (
     <NotificationProvider>
@@ -211,10 +214,13 @@ function App() {
           )}
           
           {activeTab === 'profile' && user && (
-            <UserProfile 
-              user={user}
-              onSettingsChange={handleSettingsChange}
-            />
+            <div>
+              <div>Profile component should be here</div>
+              <UserProfile 
+                user={user}
+                onSettingsChange={handleSettingsChange}
+              />
+            </div>
           )}
           
           {activeTab === 'notifications' && (
