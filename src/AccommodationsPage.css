@@ -1,23 +1,41 @@
 .accommodations-page {
-  padding: 20px 0;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.page-header {
-  margin-bottom: 30px;
+.accommodations-page .page-header {
+  text-align: left;
+  margin-bottom: 24px;
 }
 
-.page-header h2 {
-  margin: 0 0 10px 0;
-  color: #333;
+.accommodations-page .page-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #202124;
 }
 
-.page-header p {
+.accommodations-page .page-header p {
   margin: 0;
-  color: #6c757d;
+  color: #5f6368;
+  font-size: 16px;
 }
 
-@media (max-width: 768px) {
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
   .accommodations-page {
-    padding: 10px 0;
+    padding: 0;
+  }
+  
+  .accommodations-page .page-header {
+    padding: 0 12px;
+  }
+  
+  .accommodations-page .page-header h2 {
+    font-size: 20px;
+  }
+  
+  .accommodations-page .page-header p {
+    font-size: 14px;
   }
 }

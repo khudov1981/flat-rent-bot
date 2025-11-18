@@ -1,4 +1,7 @@
 import React from 'react';
+import Button from './components/Button';
+import Card from './components/Card';
+import BookingStats from './components/BookingStats';
 import './TodayBookings.css';
 
 const TodayBookings = ({ accommodations, onAccommodationSelect }) => {
@@ -51,29 +54,32 @@ const TodayBookings = ({ accommodations, onAccommodationSelect }) => {
         <p>{today.toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
       </div>
       
+      <BookingStats accommodations={accommodations} />
+      
       {todayBookings.length === 0 ? (
-        <div className="empty-state">
+        <Card className="empty-state">
           <p>На сегодня нет бронирований</p>
-        </div>
+        </Card>
       ) : (
         <div className="bookings-list">
           {todayBookings.map((item, index) => (
-            <div key={index} className="booking-card">
+            <Card key={index} className="booking-card">
               <div className="booking-header">
                 <h3>{item.accommodation.name}</h3>
-                <button 
-                  className="view-button"
+                <Button 
+                  variant="secondary"
+                  size="small"
                   onClick={() => onAccommodationSelect(item.accommodation)}
                 >
                   Перейти к объекту
-                </button>
+                </Button>
               </div>
               <div className="booking-details">
                 <p className="client-name">Клиент: {item.booking.client.fullName}</p>
                 <p className="client-phone">Телефон: {item.booking.client.phone}</p>
                 <p className="booking-time">Забронировано: {formatDate(item.booking.createdAt)}</p>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       )}

@@ -1,0 +1,125 @@
+.notification-list {
+  width: 100%;
+}
+
+.notification-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.notification-list__header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.notification-list__controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.notification-filter {
+  padding: 8px 12px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: white;
+  color: #202124;
+}
+
+.notification-list__empty {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.notification-list__empty p {
+  margin: 0;
+  color: #5f6368;
+  font-size: 16px;
+}
+
+.notification-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notification-item {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-left: 4px solid #4285f4;
+}
+
+.notification-item--success {
+  border-left-color: #34a853;
+}
+
+.notification-item--warning {
+  border-left-color: #f9ab00;
+}
+
+.notification-item--error {
+  border-left-color: #ea4335;
+}
+
+.notification-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.notification-item__icon {
+  font-size: 20px;
+}
+
+.notification-item__time {
+  font-size: 12px;
+  color: #80868b;
+}
+
+.notification-item__content {
+  flex: 1;
+}
+
+.notification-item__message {
+  margin: 0;
+  color: #202124;
+  line-height: 1.5;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+  .notification-list__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .notification-list__controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .notification-filter {
+    width: 100%;
+  }
+  
+  .notification-item {
+    padding: 12px;
+  }
+  
+  .notification-item__header {
+    margin-bottom: 8px;
+  }
+  
+  .notification-item__message {
+    font-size: 14px;
+  }
+}

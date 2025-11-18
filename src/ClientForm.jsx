@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import Button from './components/Button';
+import Input from './components/Input';
+import Card from './components/Card';
+import { useNotification } from './contexts/NotificationContext';
 import './ClientForm.css';
 
 const ClientForm = ({ 
@@ -7,6 +11,7 @@ const ClientForm = ({
   onBookingComplete, 
   onBack 
 }) => {
+  const { showNotification } = useNotification();
   const [clientData, setClientData] = useState({
     fullName: '',
     phone: ''
@@ -52,6 +57,7 @@ const ClientForm = ({
     e.preventDefault();
     
     if (!validateForm()) {
+      showNotification('Пожалуйста, исправьте ошибки в форме', 'error');
       return;
     }
     
@@ -100,7 +106,7 @@ const ClientForm = ({
         <p>Введите информацию о клиенте для бронирования</p>
       </div>
       
-      <div className="booking-summary">
+      <Card className="booking-summary">
         <h3>Информация о бронировании</h3>
         <div className="summary-item">
           <span>Объект:</span>
@@ -122,52 +128,43 @@ const ClientForm = ({
           <span>Итого:</span>
           <span>{getTotalPrice()} ₽</span>
         </div>
-      </div>
+      </Card>
       
       <form onSubmit={handleSubmit} className="client-details-form">
-        <div className="form-group">
-          <label htmlFor="fullName">ФИО клиента *</label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            value={clientData.fullName}
-            onChange={handleInputChange}
-            placeholder="Иванов Иван Иванович"
-            className={errors.fullName ? 'error' : ''}
-          />
-          {errors.fullName && <span className="error-message">{errors.fullName}</span>}
-        </div>
+        <Input
+          label="ФИО клиента *"
+          type="text"
+          name="fullName"
+          value={clientData.fullName}
+          onChange={handleInputChange}
+          placeholder="Иванов Иван Иванович"
+          error={errors.fullName}
+        />
         
-        <div className="form-group">
-          <label htmlFor="phone">Номер телефона *</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={clientData.phone}
-            onChange={handleInputChange}
-            placeholder="+7 (XXX) XXX-XX-XX"
-            className={errors.phone ? 'error' : ''}
-          />
-          {errors.phone && <span className="error-message">{errors.phone}</span>}
-        </div>
+        <Input
+          label="Номер телефона *"
+          type="tel"
+          name="phone"
+          value={clientData.phone}
+          onChange={handleInputChange}
+          placeholder="+7 (XXX) XXX-XX-XX"
+          error={errors.phone}
+        />
         
         <div className="form-actions">
-          <button 
-            type="button" 
-            className="back-button"
+          <Button 
+            variant="secondary"
             onClick={onBack}
           >
             Назад к выбору дат
-          </button>
-          <button 
-            type="submit" 
-            className="submit-button"
+          </Button>
+          <Button 
+            variant="primary"
+            type="submit"
             disabled={!selectedAccommodation || selectedDates.length === 0}
           >
             Подтвердить бронирование
-          </button>
+          </Button>
         </div>
       </form>
     </div>

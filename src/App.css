@@ -1,208 +1,147 @@
-* {
-  margin: 0;
+#root {
+  max-width: 100%;
+  margin: 0 auto;
   padding: 0;
-  box-sizing: border-box;
+  text-align: center;
 }
 
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f5f5f5;
-  color: #333;
-  padding-bottom: 80px; /* Увеличенный отступ для нижней навигации */
-  height: 100vh;
-  overflow-y: auto;
-  /* Скрытие скроллбара в WebKit-браузерах */
-  scrollbar-width: none; /* Для Firefox */
-  -ms-overflow-style: none; /* Для IE и Edge */
-}
-
-/* Скрытие скроллбара в WebKit-браузерах */
-body::-webkit-scrollbar {
-  display: none;
+  color: #202124;
 }
 
 .App {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  height: 100%;
-  overflow-y: auto;
-  /* Скрытие скроллбара в WebKit-браузерах */
-  scrollbar-width: none; /* Для Firefox */
-  -ms-overflow-style: none; /* Для IE и Edge */
-}
-
-/* Скрытие скроллбара в WebKit-браузерах */
-.App::-webkit-scrollbar {
-  display: none;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #dee2e6;
+  padding: 16px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.header h1 {
+.user-info {
   margin: 0;
-  color: #333;
-  font-size: 24px;
+  padding: 16px;
+  text-align: center;
 }
 
 .user-info p {
   margin: 0;
-  color: #6c757d;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.navigation {
+  padding: 0 16px 16px 16px;
 }
 
 .content {
-  background-color: white;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
-  height: calc(100% - 220px); /* Увеличенный отступ для нижней навигации */
+  flex: 1;
+  padding: 0 16px 16px 16px;
   overflow-y: auto;
-  /* Скрытие скроллбара в WebKit-браузерах */
-  scrollbar-width: none; /* Для Firefox */
-  -ms-overflow-style: none; /* Для IE и Edge */
-  /* Дополнительный отступ внизу для компенсации нижнего меню при прокрутке */
-  padding-bottom: 100px;
-}
-
-/* Скрытие скроллбара в WebKit-браузерах */
-.content::-webkit-scrollbar {
-  display: none;
+  overflow-x: hidden;
 }
 
 .page-header {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #dee2e6;
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 .page-header h2 {
-  margin: 0 0 10px 0;
-  color: #333;
-  font-size: 20px;
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #202124;
 }
 
 .page-header p {
   margin: 0;
-  color: #6c757d;
-}
-
-.selected-accommodation-info h3 {
-  margin: 0 0 5px 0;
-  color: #333;
-  font-size: 18px;
-}
-
-.selected-accommodation-info p {
-  margin: 0;
-  color: #28a745;
-  font-weight: 500;
+  color: #5f6368;
   font-size: 16px;
 }
 
-@media (max-width: 768px) {
-  .App {
-    padding: 10px;
-  }
-  
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  
-  .header h1 {
-    font-size: 20px;
-  }
-  
-  .content {
-    padding: 20px;
-  }
+/* Стили для состояния загрузки */
+.app-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
 }
 
-/* Адаптация для маленьких экранов */
-@media (max-width: 400px) {
-  .App {
-    padding: 8px;
-  }
-  
-  .header {
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-  }
-  
-  .header h1 {
-    font-size: 18px;
-  }
-  
-  .content {
-    padding: 15px;
-  }
-  
-  .page-header h2 {
-    font-size: 18px;
-  }
-  
-  .page-header {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-  }
-  
-  body {
-    padding-bottom: 70px; /* Адаптация отступа для нижней навигации */
-  }
-  
-  .content {
-    height: calc(100% - 210px); /* Адаптация высоты для маленьких экранов */
-    padding-bottom: 90px; /* Адаптация отступа для маленьких экранов */
-  }
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4285f4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
 }
 
-@media (max-width: 360px) {
-  .App {
-    padding: 5px;
-  }
-  
-  .header h1 {
-    font-size: 16px;
-  }
-  
-  .content {
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.app-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 16px;
+  background-color: #f5f5f5;
+}
+
+.app-error button {
+  margin-top: 16px;
+  padding: 10px 16px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.app-error button:hover {
+  background-color: #3367d6;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+  .header {
     padding: 12px;
   }
   
+  .navigation {
+    padding: 0 12px 12px 12px;
+  }
+  
+  .content {
+    padding: 0 12px 12px 12px;
+  }
+  
   .page-header h2 {
-    font-size: 16px;
+    font-size: 20px;
   }
   
-  body {
-    padding-bottom: 65px; /* Адаптация отступа для нижней навигации */
-  }
-  
-  .content {
-    height: calc(100% - 200px); /* Адаптация высоты для маленьких экранов */
-    padding-bottom: 80px; /* Адаптация отступа для маленьких экранов */
-  }
-}
-
-@media (max-width: 320px) {
-  body {
-    padding-bottom: 60px; /* Адаптация отступа для нижней навигации */
-  }
-  
-  .content {
-    height: calc(100% - 190px); /* Адаптация высоты для маленьких экранов */
-    padding-bottom: 70px; /* Адаптация отступа для маленьких экранов */
+  .page-header p {
+    font-size: 14px;
   }
 }

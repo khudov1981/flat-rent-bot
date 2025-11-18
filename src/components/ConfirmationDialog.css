@@ -1,0 +1,15 @@
+.confirmation-dialog__message {
+  margin: 0 0 20px 0;
+  color: #202124;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+  .confirmation-dialog__message {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+}

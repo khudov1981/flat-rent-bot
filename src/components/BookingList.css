@@ -1,0 +1,100 @@
+.booking-list {
+  width: 100%;
+}
+
+.booking-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.booking-list__header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.booking-list__filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.booking-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.booking-list__item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.booking-list__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.booking-list__item-header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #202124;
+  flex: 1;
+}
+
+.booking-list__item-details {
+  flex: 1;
+}
+
+.booking-list__item-details p {
+  margin: 0 0 8px 0;
+  color: #5f6368;
+  font-size: 14px;
+}
+
+.booking-list__item-details p:last-child {
+  margin-bottom: 0;
+}
+
+.booking-list__item-details strong {
+  color: #202124;
+}
+
+.booking-list__empty {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.booking-list__empty p {
+  margin: 0;
+  color: #5f6368;
+  font-size: 16px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+  .booking-list__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .booking-list__filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .booking-list__item-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

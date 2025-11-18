@@ -1,0 +1,179 @@
+.help-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.help-page .page-header {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.help-page .page-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.help-card {
+  margin-bottom: 24px;
+  padding: 24px;
+}
+
+.help-card h3 {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 16px;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: #202124;
+  transition: background-color 0.2s ease;
+}
+
+.faq-question:hover {
+  background-color: #e8f0fe;
+}
+
+.faq-toggle {
+  font-size: 20px;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.faq-toggle.expanded {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: 16px;
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+  color: #5f6368;
+  line-height: 1.5;
+}
+
+.contact-info p {
+  margin: 0 0 24px 0;
+  color: #5f6368;
+}
+
+.contact-method {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.contact-method:last-child {
+  margin-bottom: 0;
+}
+
+.contact-icon {
+  font-size: 24px;
+}
+
+.contact-method div strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #202124;
+}
+
+.contact-method div p {
+  margin: 0;
+  color: #5f6368;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #202124;
+}
+
+.feedback-select {
+  padding: 12px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: white;
+  color: #202124;
+}
+
+.feedback-textarea {
+  padding: 12px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+  .help-page .page-header {
+    padding: 0 12px;
+  }
+  
+  .help-page .page-header h2 {
+    font-size: 20px;
+  }
+  
+  .help-card {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .help-card h3 {
+    font-size: 18px;
+  }
+  
+  .faq-question {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .contact-method {
+    gap: 12px;
+  }
+  
+  .contact-icon {
+    font-size: 20px;
+  }
+  
+  .feedback-select,
+  .feedback-textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

@@ -1,63 +1,92 @@
 .calendar-page {
-  padding: 20px 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.calendar-page .page-header {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.calendar-page .page-header h2 {
+  margin: 0 0 16px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.selected-accommodation-info {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.selected-accommodation-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.selected-accommodation-info p {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #4285f4;
+}
+
+.accommodation-description {
+  margin: 8px 0 0 0 !important;
+  font-size: 14px !important;
+  color: #5f6368 !important;
+  font-weight: normal !important;
 }
 
 .no-accommodation-message {
-  background-color: #fff3cd;
-  border: 1px solid #ffeaa7;
-  border-radius: 5px;
-  padding: 20px;
   text-align: center;
-  color: #856404;
-}
-
-.no-accommodation-message .hint {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #999;
-}
-
-.calendar-placeholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 300px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border: 1px dashed #dee2e6;
+  padding: 40px 20px;
 }
 
 .placeholder-content {
-  text-align: center;
-  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .placeholder-icon {
   font-size: 48px;
-  margin-bottom: 20px;
-  display: block;
+  margin-bottom: 16px;
 }
 
-.placeholder-content p {
+.no-accommodation-message p {
+  margin: 0 0 8px 0;
+  color: #5f6368;
+}
+
+.no-accommodation-message .hint {
   margin: 0;
-  color: #6c757d;
-  font-size: 18px;
+  font-size: 14px;
+  color: #80868b;
 }
 
-@media (max-width: 768px) {
-  .calendar-page {
-    padding: 10px 0;
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+  .calendar-page .page-header {
+    padding: 0 12px;
   }
   
-  .placeholder-content {
-    padding: 20px;
+  .calendar-page .page-header h2 {
+    font-size: 20px;
   }
   
-  .placeholder-icon {
-    font-size: 36px;
+  .selected-accommodation-info {
+    padding: 16px;
   }
   
-  .placeholder-content p {
+  .selected-accommodation-info h3 {
+    font-size: 18px;
+  }
+  
+  .selected-accommodation-info p {
     font-size: 16px;
   }
 }
