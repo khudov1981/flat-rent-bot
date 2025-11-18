@@ -50,7 +50,7 @@ body {
 
 .content {
   flex: 1;
-  padding: 0 16px 16px 16px;
+  padding: 0 16px 70px 16px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -134,7 +134,7 @@ body {
   }
   
   .content {
-    padding: 0 12px 12px 12px;
+    padding: 0 12px 80px 12px;
   }
   
   .page-header h2 {
