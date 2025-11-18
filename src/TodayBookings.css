@@ -1,0 +1,195 @@
+.today-bookings {
+  padding: 20px 0;
+}
+
+.page-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.page-header h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.page-header p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 18px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 18px;
+}
+
+.bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.booking-card {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.booking-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.view-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.view-button:hover {
+  background-color: #0056b3;
+}
+
+.booking-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.client-name {
+  margin: 0;
+  font-weight: 500;
+  color: #333;
+  font-size: 16px;
+}
+
+.client-phone {
+  margin: 0;
+  color: #007bff;
+  font-size: 16px;
+}
+
+.booking-time {
+  margin: 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* Адаптация для маленьких экранов */
+@media (max-width: 400px) {
+  .today-bookings {
+    padding: 15px 0;
+  }
+  
+  .page-header h2 {
+    font-size: 20px;
+  }
+  
+  .page-header p {
+    font-size: 16px;
+  }
+  
+  .empty-state {
+    padding: 30px 15px;
+  }
+  
+  .empty-state p {
+    font-size: 16px;
+  }
+  
+  .booking-card {
+    padding: 15px;
+  }
+  
+  .booking-header h3 {
+    font-size: 16px;
+  }
+  
+  .view-button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  
+  .client-name, .client-phone {
+    font-size: 14px;
+  }
+  
+  .booking-time {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .today-bookings {
+    padding: 12px 0;
+  }
+  
+  .page-header h2 {
+    font-size: 18px;
+  }
+  
+  .page-header p {
+    font-size: 14px;
+  }
+  
+  .empty-state {
+    padding: 25px 12px;
+  }
+  
+  .empty-state p {
+    font-size: 14px;
+  }
+  
+  .booking-card {
+    padding: 12px;
+  }
+  
+  .booking-header {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+  
+  .booking-header h3 {
+    font-size: 15px;
+  }
+  
+  .view-button {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .client-name, .client-phone {
+    font-size: 13px;
+  }
+  
+  .booking-time {
+    font-size: 11px;
+  }
+}

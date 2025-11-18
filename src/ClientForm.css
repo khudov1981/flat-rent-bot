@@ -1,0 +1,393 @@
+.client-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-header h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.form-header p {
+  margin: 0;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.booking-summary {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.booking-summary h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  text-align: center;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item span:first-child {
+  color: #666;
+  font-weight: 500;
+}
+
+.summary-item span:last-child {
+  color: #333;
+  font-weight: 600;
+}
+
+.summary-item.total {
+  border-top: 2px solid #4a90e2;
+  border-bottom: none;
+  margin-top: 10px;
+  padding-top: 15px;
+}
+
+.summary-item.total span:last-child {
+  font-size: 1.3rem;
+  color: #4a90e2;
+}
+
+.client-details-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.form-group input {
+  padding: 14px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.form-group input.error {
+  border-color: #ff6b6b;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  display: block;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.back-button {
+  flex: 1;
+  padding: 14px;
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.back-button:hover {
+  background: #e0e0e0;
+}
+
+.submit-button {
+  flex: 2;
+  padding: 14px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  opacity: 1;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #3a80d2;
+}
+
+.submit-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Дополнительный отступ внизу формы для предотвращения перекрытия нижней навигацией */
+.client-form::after {
+  content: "";
+  display: block;
+  height: 80px;
+}
+
+@media (max-width: 480px) {
+  .client-form {
+    padding: 15px;
+  }
+  
+  .form-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .form-header p {
+    font-size: 1rem;
+  }
+  
+  .booking-summary {
+    padding: 15px;
+  }
+  
+  .summary-item {
+    padding: 6px 0;
+  }
+  
+  .summary-item span:first-child {
+    font-size: 0.9rem;
+  }
+  
+  .summary-item span:last-child {
+    font-size: 0.9rem;
+  }
+  
+  .summary-item.total span:last-child {
+    font-size: 1.1rem;
+  }
+  
+  .form-group label {
+    font-size: 1rem;
+  }
+  
+  .form-group input {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+  
+  .error-message {
+    font-size: 0.8rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .back-button,
+  .submit-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+  
+  /* Адаптация отступа для маленьких экранов */
+  .client-form::after {
+    height: 70px;
+  }
+}
+
+/* Адаптация для маленьких экранов */
+@media (max-width: 400px) {
+  .client-form {
+    padding: 12px;
+  }
+  
+  .form-header {
+    margin-bottom: 20px;
+  }
+  
+  .form-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .form-header p {
+    font-size: 0.9rem;
+  }
+  
+  .booking-summary {
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .booking-summary h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+  }
+  
+  .summary-item {
+    padding: 5px 0;
+  }
+  
+  .summary-item span:first-child {
+    font-size: 0.85rem;
+  }
+  
+  .summary-item span:last-child {
+    font-size: 0.85rem;
+  }
+  
+  .summary-item.total {
+    margin-top: 8px;
+    padding-top: 10px;
+  }
+  
+  .summary-item.total span:last-child {
+    font-size: 1rem;
+  }
+  
+  .form-group {
+    gap: 6px;
+  }
+  
+  .form-group label {
+    font-size: 0.95rem;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+  
+  .error-message {
+    font-size: 0.75rem;
+    margin-top: 3px;
+  }
+  
+  .form-actions {
+    margin-top: 5px;
+  }
+  
+  .back-button,
+  .submit-button {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+  
+  /* Адаптация отступа для маленьких экранов */
+  .client-form::after {
+    height: 65px;
+  }
+}
+
+@media (max-width: 360px) {
+  .client-form {
+    padding: 10px;
+  }
+  
+  .form-header {
+    margin-bottom: 15px;
+  }
+  
+  .form-header h2 {
+    font-size: 1.2rem;
+  }
+  
+  .form-header p {
+    font-size: 0.85rem;
+  }
+  
+  .booking-summary {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .booking-summary h3 {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+  }
+  
+  .summary-item {
+    padding: 4px 0;
+  }
+  
+  .summary-item span:first-child {
+    font-size: 0.8rem;
+  }
+  
+  .summary-item span:last-child {
+    font-size: 0.8rem;
+  }
+  
+  .summary-item.total {
+    margin-top: 6px;
+    padding-top: 8px;
+  }
+  
+  .summary-item.total span:last-child {
+    font-size: 0.9rem;
+  }
+  
+  .form-group {
+    gap: 5px;
+  }
+  
+  .form-group label {
+    font-size: 0.9rem;
+  }
+  
+  .form-group input {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+  
+  .error-message {
+    font-size: 0.7rem;
+  }
+  
+  .back-button,
+  .submit-button {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+  
+  /* Адаптация отступа для маленьких экранов */
+  .client-form::after {
+    height: 60px;
+  }
+}

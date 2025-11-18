@@ -1,0 +1,20 @@
+on:
+  push:
+    - workflows: [build-workflow]
+      filter:
+        branches: ["main"]
+
+workflows:
+  build-workflow:
+    tasks:
+      - name: build-task
+        cubes:
+          - name: setup-node
+            image: docker.io/library/node:18
+            script:
+              - npm install
+              - npm run build
+          - name: deploy-site
+            image: docker.io/library/node:18
+            script:
+              - echo "Build completed, site is available at https://smsforward2.sourcecraft.site/flat-rent-bot"

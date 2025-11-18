@@ -1,0 +1,208 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5;
+  color: #333;
+  padding-bottom: 80px; /* Увеличенный отступ для нижней навигации */
+  height: 100vh;
+  overflow-y: auto;
+  /* Скрытие скроллбара в WebKit-браузерах */
+  scrollbar-width: none; /* Для Firefox */
+  -ms-overflow-style: none; /* Для IE и Edge */
+}
+
+/* Скрытие скроллбара в WebKit-браузерах */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  /* Скрытие скроллбара в WebKit-браузерах */
+  scrollbar-width: none; /* Для Firefox */
+  -ms-overflow-style: none; /* Для IE и Edge */
+}
+
+/* Скрытие скроллбара в WebKit-браузерах */
+.App::-webkit-scrollbar {
+  display: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.user-info p {
+  margin: 0;
+  color: #6c757d;
+}
+
+.content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  height: calc(100% - 220px); /* Увеличенный отступ для нижней навигации */
+  overflow-y: auto;
+  /* Скрытие скроллбара в WebKit-браузерах */
+  scrollbar-width: none; /* Для Firefox */
+  -ms-overflow-style: none; /* Для IE и Edge */
+  /* Дополнительный отступ внизу для компенсации нижнего меню при прокрутке */
+  padding-bottom: 100px;
+}
+
+/* Скрытие скроллбара в WebKit-браузерах */
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.page-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.page-header h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 20px;
+}
+
+.page-header p {
+  margin: 0;
+  color: #6c757d;
+}
+
+.selected-accommodation-info h3 {
+  margin: 0 0 5px 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.selected-accommodation-info p {
+  margin: 0;
+  color: #28a745;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .App {
+    padding: 10px;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .header h1 {
+    font-size: 20px;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+}
+
+/* Адаптация для маленьких экранов */
+@media (max-width: 400px) {
+  .App {
+    padding: 8px;
+  }
+  
+  .header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .header h1 {
+    font-size: 18px;
+  }
+  
+  .content {
+    padding: 15px;
+  }
+  
+  .page-header h2 {
+    font-size: 18px;
+  }
+  
+  .page-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+  
+  body {
+    padding-bottom: 70px; /* Адаптация отступа для нижней навигации */
+  }
+  
+  .content {
+    height: calc(100% - 210px); /* Адаптация высоты для маленьких экранов */
+    padding-bottom: 90px; /* Адаптация отступа для маленьких экранов */
+  }
+}
+
+@media (max-width: 360px) {
+  .App {
+    padding: 5px;
+  }
+  
+  .header h1 {
+    font-size: 16px;
+  }
+  
+  .content {
+    padding: 12px;
+  }
+  
+  .page-header h2 {
+    font-size: 16px;
+  }
+  
+  body {
+    padding-bottom: 65px; /* Адаптация отступа для нижней навигации */
+  }
+  
+  .content {
+    height: calc(100% - 200px); /* Адаптация высоты для маленьких экранов */
+    padding-bottom: 80px; /* Адаптация отступа для маленьких экранов */
+  }
+}
+
+@media (max-width: 320px) {
+  body {
+    padding-bottom: 60px; /* Адаптация отступа для нижней навигации */
+  }
+  
+  .content {
+    height: calc(100% - 190px); /* Адаптация высоты для маленьких экранов */
+    padding-bottom: 70px; /* Адаптация отступа для маленьких экранов */
+  }
+}
