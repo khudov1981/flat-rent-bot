@@ -28,11 +28,15 @@ function App() {
   const accommodationsPageRef = useRef(null)
 
   useEffect(() => {
+    console.log('User initialization useEffect called');
     // Initialize Telegram Web App
     if (window.Telegram && window.Telegram.WebApp) {
+      console.log('Telegram Web App API is available');
       try {
         const webApp = window.Telegram.WebApp
         webApp.ready()
+        console.log('webApp.initDataUnsafe:', webApp.initDataUnsafe);
+        console.log('webApp.initDataUnsafe.user:', webApp.initDataUnsafe.user);
         setUser(webApp.initDataUnsafe.user)
         
         // Загрузка данных из localStorage
@@ -66,6 +70,7 @@ function App() {
         setError('Ошибка инициализации приложения')
       }
     } else {
+      console.log('Telegram Web App API is not available, using test user');
       // Для тестирования в браузере
       setUser({
         id: 123456,
