@@ -61,12 +61,16 @@ const AccommodationManager = ({ accommodations, onAccommodationsChange, onAccomm
   }, [accommodations]);
 
   const handleAddAccommodation = () => {
-    // Открываем новое окно с формой добавления объекта
-    const formWindow = window.open('/src/components/AddAccommodationWindow.jsx', '_blank', 'width=600,height=700');
-    
-    if (!formWindow) {
-      showNotification('Не удалось открыть новое окно. Пожалуйста, разрешите всплывающие окна для этого сайта.', 'error');
-    }
+    // Сбросим состояние редактирования и покажем форму в модальном окне
+    setEditingAccommodation(null);
+    setFormData({
+      name: '',
+      description: '',
+      address: '',
+      price: ''
+    });
+    setErrors({});
+    setShowForm(true);
   };
 
   const handleEditAccommodation = (accommodation) => {
