@@ -51,9 +51,9 @@ export const sendTelegramMessage = async (message) => {
 export const formatBookingNotification = (accommodation, clientData, dates, totalPrice) => {
   if (!accommodation || !clientData || !Array.isArray(dates) || dates.length === 0) {
     console.warn('Insufficient data for booking notification');
-    return '*New booking*
+    return `*New booking*
 
-*Insufficient data*';
+*Insufficient data*`;
   }
 
   try {
@@ -83,8 +83,8 @@ export const formatBookingNotification = (accommodation, clientData, dates, tota
     `.trim();
   } catch (error) {
     console.error('Error formatting booking notification:', error);
-    return '*New booking*
+    return `*New booking*
 
-*Error formatting data*';
+*Error formatting data*`;
   }
 };
