@@ -102,17 +102,16 @@ export const formatBookingNotification = (accommodation, clientData, dates, tota
       .join(', ');
 
     // Формируем сообщение для администратора
-    return [
-      '🔔 *Новое бронирование*',
-      '',
-      `🏠 *Объект:* ${accommodation.name || 'Не указано'}`,
-      `👤 *Клиент:* ${clientData.fullName || 'Не указано'}`,
-      `📞 *Телефон:* ${clientData.phone || 'Не указано'}`,
-      `📅 *Даты:* ${formattedDates}`,
-      `🌙 *Количество ночей:* ${dates.length}`,
-      `💰 *Сумма:* ${totalPrice || 0} ₽`
-    ].join('
-');
+    return `
+🔔 *Новое бронирование*
+
+🏠 *Объект:* ${accommodation.name || 'Не указано'}
+👤 *Клиент:* ${clientData.fullName || 'Не указано'}
+📞 *Телефон:* ${clientData.phone || 'Не указано'}
+📅 *Даты:* ${formattedDates}
+🌙 *Количество ночей:* ${dates.length}
+💰 *Сумма:* ${totalPrice || 0} ₽
+    `.trim();
   } catch (error) {
     console.error('Ошибка при форматировании уведомления о бронировании:', error);
     return '🔔 *Новое бронирование*
