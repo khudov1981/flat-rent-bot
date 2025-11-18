@@ -36,6 +36,7 @@ function App() {
         const webApp = window.Telegram.WebApp
         webApp.ready()
         console.log('webApp.initDataUnsafe:', webApp.initDataUnsafe);
+        console.log('webApp.initDataUnsafe keys:', Object.keys(webApp.initDataUnsafe));
         console.log('webApp.initDataUnsafe.user:', webApp.initDataUnsafe.user);
         setUser(webApp.initDataUnsafe.user)
         
