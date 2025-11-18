@@ -28,22 +28,16 @@ function App() {
   const accommodationsPageRef = useRef(null)
 
   useEffect(() => {
-    console.log('User initialization useEffect called');
     // Initialize Telegram Web App
     if (window.Telegram && window.Telegram.WebApp) {
-      console.log('Telegram Web App API is available');
       try {
         const webApp = window.Telegram.WebApp
         webApp.ready()
-        console.log('webApp.initDataUnsafe:', webApp.initDataUnsafe);
-        console.log('webApp.initDataUnsafe keys:', Object.keys(webApp.initDataUnsafe));
-        console.log('webApp.initDataUnsafe.user:', webApp.initDataUnsafe?.user);
         
         // Проверяем, доступны ли данные пользователя
         if (webApp.initDataUnsafe && Object.keys(webApp.initDataUnsafe).length > 0 && webApp.initDataUnsafe.user) {
           setUser(webApp.initDataUnsafe.user)
         } else {
-          console.log('webApp.initDataUnsafe is empty or user data is not available, using test user');
           // Используем тестовые данные, если данные пользователя недоступны
           setUser({
             id: 123456,
@@ -84,7 +78,6 @@ function App() {
         setError('Ошибка инициализации приложения')
       }
     } else {
-      console.log('Telegram Web App API is not available, using test user');
       // Для тестирования в браузере
       setUser({
         id: 123456,
@@ -162,7 +155,6 @@ function App() {
   }
 
   const handleTabChange = (tab) => {
-    console.log('handleTabChange called with tab:', tab);
     setActiveTab(tab)
   }
 
@@ -190,8 +182,6 @@ function App() {
       </div>
     )
   }
-
-  console.log('App rendering with activeTab:', activeTab, 'and user:', user);
 
   return (
     <NotificationProvider>
@@ -234,7 +224,6 @@ function App() {
           
           {activeTab === 'profile' && user && (
             <div>
-              <div>Profile component should be here</div>
               <UserProfile 
                 user={user}
                 onSettingsChange={handleSettingsChange}
