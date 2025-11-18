@@ -37,8 +37,21 @@ function App() {
         webApp.ready()
         console.log('webApp.initDataUnsafe:', webApp.initDataUnsafe);
         console.log('webApp.initDataUnsafe keys:', Object.keys(webApp.initDataUnsafe));
-        console.log('webApp.initDataUnsafe.user:', webApp.initDataUnsafe.user);
-        setUser(webApp.initDataUnsafe.user)
+        console.log('webApp.initDataUnsafe.user:', webApp.initDataUnsafe?.user);
+        
+        // Проверяем, доступны ли данные пользователя
+        if (webApp.initDataUnsafe && Object.keys(webApp.initDataUnsafe).length > 0 && webApp.initDataUnsafe.user) {
+          setUser(webApp.initDataUnsafe.user)
+        } else {
+          console.log('webApp.initDataUnsafe is empty or user data is not available, using test user');
+          // Используем тестовые данные, если данные пользователя недоступны
+          setUser({
+            id: 123456,
+            first_name: 'Тестовый',
+            last_name: 'Пользователь',
+            username: 'testuser'
+          })
+        }
         
         // Загрузка данных из localStorage
         const savedAccommodations = localStorage.getItem('accommodations')
