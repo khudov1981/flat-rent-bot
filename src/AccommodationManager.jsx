@@ -22,44 +22,6 @@ const AccommodationManager = ({ accommodations, onAccommodationsChange, onAccomm
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [accommodationToDelete, setAccommodationToDelete] = useState(null);
 
-  // Обработчики событий из сетки объектов
-  useEffect(() => {
-    const handleEditAccommodation = (event) => {
-      handleEditAccommodation(event.detail);
-    };
-    
-    const handleDeleteAccommodation = (event) => {
-      const accommodation = accommodations.find(acc => acc.id === event.detail);
-      if (accommodation) {
-        handleDeleteClick(accommodation);
-      }
-    };
-    
-    // Проверяем наличие новых объектов из нового окна
-    const checkForNewAccommodation = () => {
-      const newAccommodationData = localStorage.getItem('newAccommodation');
-      if (newAccommodationData) {
-        const newAccommodation = JSON.parse(newAccommodationData);
-        onAccommodationsChange([...accommodations, newAccommodation]);
-        localStorage.removeItem('newAccommodation');
-        showNotification('Новый объект размещения успешно добавлен', 'success');
-      }
-    };
-    
-    window.addEventListener('editAccommodation', handleEditAccommodation);
-    window.addEventListener('deleteAccommodation', handleDeleteAccommodation);
-    window.addEventListener('storage', checkForNewAccommodation);
-    
-    // Проверяем при загрузке компонента
-    checkForNewAccommodation();
-    
-    return () => {
-      window.removeEventListener('editAccommodation', handleEditAccommodation);
-      window.removeEventListener('deleteAccommodation', handleDeleteAccommodation);
-      window.removeEventListener('storage', checkForNewAccommodation);
-    };
-  }, [accommodations]);
-
   const handleAddAccommodation = () => {
     // Сбросим состояние редактирования и покажем форму в модальном окне
     setEditingAccommodation(null);
