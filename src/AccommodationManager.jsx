@@ -164,12 +164,14 @@ const AccommodationManager = ({ accommodations, onAccommodationsChange, onAccomm
     <div className="accommodation-manager">
       <div className="manager-header">
         <h3>Список объектов размещения</h3>
-        <Button 
-          variant="primary" 
-          onClick={handleAddAccommodation}
-        >
-          Добавить объект
-        </Button>
+        {accommodations.length > 0 && (
+          <Button 
+            variant="primary" 
+            onClick={handleAddAccommodation}
+          >
+            Добавить объект
+          </Button>
+        )}
       </div>
       
       {showForm ? (
