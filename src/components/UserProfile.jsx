@@ -24,6 +24,12 @@ const UserProfile = ({ user, onSettingsChange }) => {
     setIsEditing(false);
   };
 
+  const handleNavigate = (tab) => {
+    // Отправляем событие для навигации в родительский компонент
+    const event = new CustomEvent('navigateToTab', { detail: tab });
+    window.dispatchEvent(event);
+  };
+
   const languages = [
     { value: 'ru', label: 'Русский' },
     { value: 'en', label: 'English' }
@@ -126,6 +132,39 @@ const UserProfile = ({ user, onSettingsChange }) => {
               </Button>
             </div>
           )}
+        </div>
+        
+        <div className="user-profile__menu">
+          <h4>Дополнительные разделы</h4>
+          
+          <div className="user-profile__menu-buttons">
+            <Button 
+              variant="secondary" 
+              className="user-profile__menu-button"
+              onClick={() => handleNavigate('notifications')}
+            >
+              <span className="user-profile__menu-icon">🔔</span>
+              <span className="user-profile__menu-text">Уведомления</span>
+            </Button>
+            
+            <Button 
+              variant="secondary" 
+              className="user-profile__menu-button"
+              onClick={() => handleNavigate('settings')}
+            >
+              <span className="user-profile__menu-icon">⚙️</span>
+              <span className="user-profile__menu-text">Настройки</span>
+            </Button>
+            
+            <Button 
+              variant="secondary" 
+              className="user-profile__menu-button"
+              onClick={() => handleNavigate('help')}
+            >
+              <span className="user-profile__menu-icon">❓</span>
+              <span className="user-profile__menu-text">Помощь</span>
+            </Button>
+          </div>
         </div>
       </Card>
     </div>
