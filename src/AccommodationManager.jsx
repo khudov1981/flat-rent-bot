@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from './components/Button';
 import Input from './components/Input';
 import TextArea from './components/TextArea';
@@ -172,9 +172,75 @@ const AccommodationManager = ({ accommodations, onAccommodationsChange, onAccomm
         </Button>
       </div>
       
-      {accommodations.length === 0 ? (
+      {showForm ? (
+        // Отображаем форму вместо списка объектов
+        <div className="form-container">
+          <h3>{editingAccommodation ? 'Редактирование объекта' : 'Добавление нового объекта'}</h3>
+          <form onSubmit={handleSubmit} className="accommodation-form">
+            <Input
+              label="Название объекта *"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Уютная квартира в центре города"
+              error={errors.name}
+            />
+            
+            <TextArea
+              label="Описание"
+              name="description"
+              value={formData.description}
+              onChange={handleInputChange}
+              placeholder="Описание объекта размещения..."
+              rows="3"
+            />
+            
+            <Input
+              label="Адрес"
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleInputChange}
+              placeholder="Адрес объекта"
+            />
+            
+            <Input
+              label="Цена за ночь (₽) *"
+              type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleInputChange}
+              placeholder="1000"
+              error={errors.price}
+            />
+            
+            <div className="form-actions">
+              <Button 
+                type="button" 
+                variant="secondary" 
+                onClick={handleCancel}
+              >
+                Отмена
+              </Button>
+              <Button 
+                type="submit" 
+                variant="primary"
+              >
+                {editingAccommodation ? 'Сохранить изменения' : 'Добавить объект'}
+              </Button>
+            </div>
+          </form>
+        </div>
+      ) : accommodations.length === 0 ? (
         <Card className="empty-state">
           <p>Пока нет объектов размещения</p>
+          <Button 
+            variant="primary" 
+            onClick={handleAddAccommodation}
+          >
+            Добавить первый объект
+          </Button>
         </Card>
       ) : (
         <div className="accommodations-list">
@@ -245,62 +311,6 @@ const AccommodationManager = ({ accommodations, onAccommodationsChange, onAccomm
           ))}
         </div>
       )}
-      
-      <Modal
-        isOpen={showForm}
-        onClose={handleCancel}
-        title={editingAccommodation ? 'Редактирование объекта' : 'Добавление нового объекта'}
-        size="medium"
-        actions={[
-          <Button key="cancel" variant="secondary" onClick={handleCancel}>
-            Отмена
-          </Button>,
-          <Button key="submit" variant="primary" onClick={handleSubmit}>
-            {editingAccommodation ? 'Сохранить изменения' : 'Добавить объект'}
-          </Button>
-        ]}
-      >
-        <p>Заполните информацию об объекте размещения</p>
-        <form onSubmit={handleSubmit} className="accommodation-form">
-          <Input
-            label="Название объекта *"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Уютная квартира в центре города"
-            error={errors.name}
-          />
-          
-          <TextArea
-            label="Описание"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            placeholder="Описание объекта размещения..."
-            rows="3"
-          />
-          
-          <Input
-            label="Адрес"
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleInputChange}
-            placeholder="Адрес объекта"
-          />
-          
-          <Input
-            label="Цена за ночь (₽) *"
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleInputChange}
-            placeholder="1000"
-            error={errors.price}
-          />
-        </form>
-      </Modal>
       
       <ConfirmationDialog
         isOpen={showDeleteDialog}
