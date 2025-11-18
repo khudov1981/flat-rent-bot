@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import AppNavigation from './components/AppNavigation'
+import BottomNavigation from './components/BottomNavigation'
 import AccommodationsPage from './AccommodationsPage'
 import CalendarPage from './CalendarPage'
 import TodayBookings from './TodayBookings'
@@ -166,13 +166,6 @@ function App() {
           )}
         </div>
         
-        <div className="navigation">
-          <AppNavigation 
-            activeTab={activeTab}
-            onTabChange={handleTabChange}
-          />
-        </div>
-        
         <div className="content">
           {activeTab === 'home' && (
             <TodayBookings 
@@ -222,6 +215,11 @@ function App() {
             <HelpPage />
           )}
         </div>
+        
+        <BottomNavigation 
+          activeTab={activeTab}
+          onTabChange={handleTabChange}
+        />
       </div>
     </NotificationProvider>
   )
