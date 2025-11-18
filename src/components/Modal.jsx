@@ -24,14 +24,16 @@ const Modal = ({
   };
 
   React.useEffect(() => {
-    document.addEventListener('keydown', handleEscapeKey);
-    document.body.style.overflow = 'hidden';
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscapeKey);
+      document.body.style.overflow = 'hidden';
+    }
     
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
       document.body.style.overflow = 'unset';
     };
-  }, []);
+  }, [isOpen]);
 
   return (
     <div className="modal-backdrop" onClick={handleBackdropClick}>
