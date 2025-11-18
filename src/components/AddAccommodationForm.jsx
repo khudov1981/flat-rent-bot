@@ -5,6 +5,42 @@ import TextArea from './TextArea';
 import './Modal.css';
 import '../AccommodationManager.css';
 
+// Генерация уникального ID
+const generateId = () => {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+};
+
+// Безопасная работа с localStorage
+const safeLocalStorage = {
+  setItem: (key, value) => {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch (error) {
+      console.error('Ошибка при сохранении в localStorage:', error);
+      return false;
+    }
+  },
+  getItem: (key) => {
+    try {
+      const item = localStorage.getItem(key);
+      return item ? JSON.parse(item) : null;
+    } catch (error) {
+      console.error('Ошибка при чтении из localStorage:', error);
+      return null;
+    }
+  },
+  removeItem: (key) => {
+    try {
+      localStorage.removeItem(key);
+      return true;
+    } catch (error) {
+      console.error('Ошибка при удалении из localStorage:', error);
+      return false;
+    }
+  }
+};
+
 const AddAccommodationForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -17,21 +53,27 @@ const AddAccommodationForm = () => {
   useEffect(() => {
     // При закрытии окна сохраняем данные в localStorage
     const handleBeforeUnload = () => {
-      localStorage.setItem('addAccommodationFormData', JSON.stringify(formData));
+      safeLocalStorage.setItem('addAccommodationFormData', formData);
     };
     
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    
-    // При загрузке окна восстанавливаем данные из localStorage
-    const savedData = localStorage.getItem('addAccommodationFormData');
-    if (savedData) {
-      setFormData(JSON.parse(savedData));
+    // Проверяем, что window существует (для SSR)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('beforeunload', handleBeforeUnload);
     }
     
+    // При загрузке окна восстанавливаем данные из localStorage
+    const savedData = safeLocalStorage.getItem('addAccommodationFormData');
+    if (savedData) {
+      setFormData(savedData);
+    }
+    
+    // Функция очистки
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      }
     };
-  }, []);
+  }, [formData]); // Добавляем formData в зависимости
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -54,12 +96,16 @@ const AddAccommodationForm = () => {
     
     if (!formData.name.trim()) {
       newErrors.name = 'Пожалуйста, введите название объекта';
+    } else if (formData.name.trim().length < 3) {
+      newErrors.name = 'Название должно содержать не менее 3 символов';
     }
     
     if (!formData.price.trim()) {
       newErrors.price = 'Пожалуйста, введите цену за ночь';
     } else if (isNaN(formData.price) || Number(formData.price) <= 0) {
       newErrors.price = 'Пожалуйста, введите корректную цену';
+    } else if (Number(formData.price) < 100) {
+      newErrors.price = 'Цена должна быть не менее 100 рублей';
     }
     
     setErrors(newErrors);
@@ -70,25 +116,33 @@ const AddAccommodationForm = () => {
     e.preventDefault();
     
     if (!validateForm()) {
-      alert('Пожалуйста, исправьте ошибки в форме');
+      // Вместо alert используем более подходящий способ
+      console.warn('Форма содержит ошибки');
       return;
     }
     
     // Сохраняем данные в localStorage для передачи в основное окно
-    localStorage.setItem('newAccommodation', JSON.stringify({
+    const newAccommodation = {
       ...formData,
-      id: Date.now().toString(),
+      id: generateId(),
       price: Number(formData.price),
       bookings: []
-    }));
+    };
     
-    // Закрываем окно
-    window.close();
+    if (safeLocalStorage.setItem('newAccommodation', newAccommodation)) {
+      // Закрываем окно
+      if (typeof window !== 'undefined') {
+        window.close();
+      }
+    } else {
+      console.error('Не удалось сохранить данные объекта');
+    }
   };
 
   const handleCancel = () => {
-    if (window.confirm('Вы уверены, что хотите закрыть форму? Все несохраненные данные будут потеряны.')) {
-      localStorage.removeItem('addAccommodationFormData');
+    if (typeof window !== 'undefined' && 
+        window.confirm('Вы уверены, что хотите закрыть форму? Все несохраненные данные будут потеряны.')) {
+      safeLocalStorage.removeItem('addAccommodationFormData');
       window.close();
     }
   };
@@ -142,6 +196,18 @@ const AddAccommodationForm = () => {
               placeholder="1000"
               error={errors.price}
             />
+            
+            {/* Отображение ошибок формы */}
+            {Object.keys(errors).length > 0 && (
+              <div className="form-errors">
+                <p>Пожалуйста, исправьте следующие ошибки:</p>
+                <ul>
+                  {Object.values(errors).map((error, index) => (
+                    <li key={index} className="error-text">{error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </form>
         </div>
         <div className="modal__footer">

@@ -7,6 +7,12 @@ import config from './config';
  */
 export const sendTelegramMessage = async (message) => {
   try {
+    // Проверяем, что сообщение не пустое
+    if (!message || message.trim().length === 0) {
+      console.warn('Попытка отправить пустое сообщение. Уведомление не отправлено.');
+      return false;
+    }
+
     // Проверяем, что токен и chat ID заданы
     if (!config.BOT_TOKEN || !config.ADMIN_CHAT_ID) {
       console.warn('Токен бота или ID чата администратора не заданы. Уведомление не отправлено.');
@@ -19,9 +25,12 @@ export const sendTelegramMessage = async (message) => {
     // Параметры запроса
     const payload = {
       chat_id: config.ADMIN_CHAT_ID,
-      text: message,
+      text: message.trim(),
       parse_mode: 'Markdown',
     };
+
+    // Записываем время начала запроса для логирования
+    const startTime = Date.now();
 
     // Отправляем запрос к Telegram Bot API
     const response = await fetch(url, {
@@ -30,13 +39,16 @@ export const sendTelegramMessage = async (message) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
-      timeout: config.API_TIMEOUT,
     });
+
+    // Логируем время выполнения запроса
+    const duration = Date.now() - startTime;
+    console.log(`Запрос к Telegram API выполнен за ${duration} мс`);
 
     // Проверяем статус ответа
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Ошибка при отправке сообщения через Telegram API:', errorData);
+      const errorData = await response.json().catch(() => ({}));
+      console.error(`Ошибка при отправке сообщения через Telegram API: ${response.status} - ${response.statusText}`, errorData);
       return false;
     }
 
@@ -64,30 +76,46 @@ export const sendTelegramMessage = async (message) => {
  * @returns {string} - Отформатированный текст сообщения
  */
 export const formatBookingNotification = (accommodation, clientData, dates, totalPrice) => {
-  // Форматируем даты для отображения
-  const formattedDates = dates
-    .sort((a, b) => a - b)
-    .map(date => date.toLocaleDateString('ru-RU', { 
-      day: 'numeric', 
-      month: 'long',
-      year: 'numeric'
-    }))
-    .join(', ');
+  // Проверяем входные данные
+  if (!accommodation || !clientData || !Array.isArray(dates) || dates.length === 0) {
+    console.warn('Недостаточно данных для форматирования уведомления о бронировании');
+    return '🔔 *Новое бронирование*
 
-  // Формируем сообщение для администратора
-  return `
+⚠️ Недостаточно данных для отображения';
+  }
+
+  try {
+    // Форматируем даты для отображения
+    const formattedDates = dates
+      .sort((a, b) => a - b)
+      .map(date => {
+        // Проверяем, что date является допустимой датой
+        if (!(date instanceof Date) || isNaN(date)) {
+          return 'Недействительная дата';
+        }
+        return date.toLocaleDateString('ru-RU', { 
+          day: 'numeric', 
+          month: 'long',
+          year: 'numeric'
+        });
+      })
+      .join(', ');
+
+    // Формируем сообщение для администратора
+    return `
 🔔 *Новое бронирование*
 
-🏠 *Объект:* ${accommodation.name}
-👤 *Клиент:* ${clientData.fullName}
-📞 *Телефон:* ${clientData.phone}
+🏠 *Объект:* ${accommodation.name || 'Не указано'}
+👤 *Клиент:* ${clientData.fullName || 'Не указано'}
+📞 *Телефон:* ${clientData.phone || 'Не указано'}
 📅 *Даты:* ${formattedDates}
 🌙 *Количество ночей:* ${dates.length}
-💰 *Сумма:* ${totalPrice} ₽
-  `.trim();
-};
+💰 *Сумма:* ${totalPrice || 0} ₽
+    `.trim();
+  } catch (error) {
+    console.error('Ошибка при форматировании уведомления о бронировании:', error);
+    return '🔔 *Новое бронирование*
 
-export default {
-  sendTelegramMessage,
-  formatBookingNotification
+⚠️ Ошибка при формировании данных о бронировании';
+  }
 };
