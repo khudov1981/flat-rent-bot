@@ -29,9 +29,6 @@ export const sendTelegramMessage = async (message) => {
       parse_mode: 'Markdown',
     };
 
-    // Записываем время начала запроса для логирования
-    const startTime = Date.now();
-
     // Отправляем запрос к Telegram Bot API
     const response = await fetch(url, {
       method: 'POST',
@@ -40,10 +37,6 @@ export const sendTelegramMessage = async (message) => {
       },
       body: JSON.stringify(payload),
     });
-
-    // Логируем время выполнения запроса
-    const duration = Date.now() - startTime;
-    console.log(`Запрос к Telegram API выполнен за ${duration} мс`);
 
     // Проверяем статус ответа
     if (!response.ok) {
