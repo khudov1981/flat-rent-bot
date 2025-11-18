@@ -5,6 +5,8 @@ import Input from './Input';
 import './UserProfile.css';
 
 const UserProfile = ({ user, onSettingsChange }) => {
+  console.log('UserProfile rendered with user:', user);
+  
   const [isEditing, setIsEditing] = useState(false);
   const [settings, setSettings] = useState({
     notifications: true,
@@ -34,6 +36,10 @@ const UserProfile = ({ user, onSettingsChange }) => {
     { value: 'ru', label: 'Русский' },
     { value: 'en', label: 'English' }
   ];
+
+  if (!user) {
+    return <div>Пользователь не найден</div>;
+  }
 
   return (
     <div className="user-profile">
