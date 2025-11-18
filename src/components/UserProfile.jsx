@@ -5,8 +5,6 @@ import Input from './Input';
 import './UserProfile.css';
 
 const UserProfile = ({ user, onSettingsChange }) => {
-  console.log('UserProfile rendered with user:', user);
-  
   const [isEditing, setIsEditing] = useState(false);
   const [settings, setSettings] = useState({
     notifications: true,
