@@ -117,6 +117,45 @@
   margin-top: 16px;
 }
 
+/* Стили для меню */
+.user-profile__menu {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.user-profile__menu h4 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.user-profile__menu-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.user-profile__menu-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 8px;
+  gap: 8px;
+  height: 100%;
+}
+
+.user-profile__menu-icon {
+  font-size: 24px;
+}
+
+.user-profile__menu-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
 /* Адаптивность для мобильных устройств */
 @media (max-width: 600px) {
   .user-profile__card {
@@ -168,5 +207,24 @@
   
   .user-profile__actions button {
     width: 100%;
+  }
+  
+  .user-profile__menu-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  .user-profile__menu-button {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .user-profile__menu-icon {
+    font-size: 20px;
+  }
+  
+  .user-profile__menu-text {
+    font-size: 16px;
   }
 }
