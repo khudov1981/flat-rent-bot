@@ -92,6 +92,22 @@ function App() {
     setLoading(false)
   }, [])
 
+  // Обработчик события navigateToTab из компонента профиля
+  useEffect(() => {
+    const handleNavigateToTab = (event) => {
+      const tab = event.detail;
+      if (tab) {
+        setActiveTab(tab);
+      }
+    };
+
+    window.addEventListener('navigateToTab', handleNavigateToTab);
+
+    return () => {
+      window.removeEventListener('navigateToTab', handleNavigateToTab);
+    };
+  }, []);
+
   // Сохранение объектов размещения в localStorage при изменении
   useEffect(() => {
     if (!loading) {
