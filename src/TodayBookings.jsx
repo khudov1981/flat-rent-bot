@@ -8,32 +8,20 @@ const TodayBookings = ({ accommodations, onAccommodationSelect }) => {
   // Получаем текущую дату
   const today = new Date();
   const todayString = today.toISOString().split('T')[0];
-  
-  console.log('Today date object:', today);
-  console.log('Today string (YYYY-MM-DD):', todayString);
-  console.log('Accommodations:', accommodations);
 
   // Фильтруем бронирования на сегодня
   const todayBookings = [];
 
-  accommodations.forEach((accommodation, accIndex) => {
-    console.log(`Accommodation ${accIndex}:`, accommodation);
+  accommodations.forEach(accommodation => {
     if (accommodation.bookings && accommodation.bookings.length > 0) {
-      accommodation.bookings.forEach((booking, bookIndex) => {
-        console.log(`Booking ${bookIndex} dates:`, booking.dates);
+      accommodation.bookings.forEach(booking => {
         // Проверяем, есть ли сегодняшняя дата в бронировании
-        const isTodayBooked = booking.dates.some((dateString, dateIndex) => {
-          console.log(`Date ${dateIndex}:`, dateString);
+        const isTodayBooked = booking.dates.some(dateString => {
           const bookingDate = new Date(dateString);
-          console.log('Booking date object:', bookingDate);
-          const bookingDateString = bookingDate.toISOString().split('T')[0];
-          console.log('Booking date string (YYYY-MM-DD):', bookingDateString);
-          console.log('Comparing:', bookingDateString, 'with', todayString, 'result:', bookingDateString === todayString);
-          return bookingDateString === todayString;
+          return bookingDate.toISOString().split('T')[0] === todayString;
         });
 
         if (isTodayBooked) {
-          console.log('Booking matches today:', booking);
           todayBookings.push({
             accommodation: accommodation,
             booking: booking
@@ -42,8 +30,6 @@ const TodayBookings = ({ accommodations, onAccommodationSelect }) => {
       });
     }
   });
-  
-  console.log('Final today bookings:', todayBookings);
 
   // Сортируем бронирования по времени начала бронирования
   todayBookings.sort((a, b) => {
