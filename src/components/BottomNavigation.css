@@ -56,13 +56,21 @@
   transform: scale(1.1);
 }
 
+/* Стили для содержимого кнопки навигации, чтобы иконка и надпись отображались вертикально */
+.bottom-navigation .button.bottom-navigation__button .button__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
 .bottom-navigation__button--active .bottom-navigation__label {
   transform: scale(1.05);
 }
 
 .bottom-navigation__icon {
   font-size: 20px;
-  margin-bottom: 4px;
   transition: transform 0.2s ease;
 }
 
@@ -82,6 +90,10 @@
   
   .bottom-navigation .button.bottom-navigation__button {
     font-size: 10px;
+  }
+  
+  .bottom-navigation .button.bottom-navigation__button .button__content {
+    gap: 2px;
   }
   
   .bottom-navigation__icon {
