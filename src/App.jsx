@@ -90,6 +90,7 @@ function App() {
       
       // Загрузка тестовых данных
       const today = new Date().toISOString().split('T')[0];
+      console.log('Creating test booking for date:', today);
       
       const testAccommodations = [
         {
@@ -111,6 +112,7 @@ function App() {
           ]
         }
       ]
+      console.log('Test accommodations with bookings:', testAccommodations);
       setAccommodations(testAccommodations)
       setSelectedAccommodation(testAccommodations[0])
     }
