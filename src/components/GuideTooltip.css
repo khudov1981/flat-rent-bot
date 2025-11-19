@@ -1,0 +1,185 @@
+.guide-tooltip {
+  position: fixed;
+  z-index: 10000;
+  max-width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e0e0e0;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.guide-tooltip__content {
+  padding: 20px;
+}
+
+.guide-tooltip__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.guide-tooltip__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.guide-tooltip__close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #5f6368;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.guide-tooltip__close:hover {
+  background-color: #f1f3f4;
+}
+
+.guide-tooltip__body {
+  margin-bottom: 20px;
+}
+
+.guide-tooltip__body p {
+  margin: 0;
+  color: #5f6368;
+  line-height: 1.5;
+}
+
+.guide-tooltip__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.guide-tooltip__steps {
+  font-size: 14px;
+  color: #5f6368;
+}
+
+.guide-tooltip__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.guide-tooltip__arrow {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+/* Позиционирование тултипа сверху */
+.guide-tooltip--top {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.guide-tooltip--top .guide-tooltip__arrow {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  margin-top: -6px;
+}
+
+/* Позиционирование тултипа снизу */
+.guide-tooltip--bottom {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.guide-tooltip--bottom .guide-tooltip__arrow {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  margin-bottom: -6px;
+}
+
+/* Позиционирование тултипа слева */
+.guide-tooltip--left {
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+.guide-tooltip--left .guide-tooltip__arrow {
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%) rotate(45deg);
+  margin-left: -6px;
+}
+
+/* Позиционирование тултипа справа */
+.guide-tooltip--right {
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+.guide-tooltip--right .guide-tooltip__arrow {
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%) rotate(45deg);
+  margin-right: -6px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+  .guide-tooltip {
+    max-width: 280px;
+    margin: 0 10px;
+  }
+  
+  .guide-tooltip__content {
+    padding: 16px;
+  }
+  
+  .guide-tooltip__title {
+    font-size: 16px;
+  }
+  
+  .guide-tooltip__body p {
+    font-size: 14px;
+  }
+  
+  .guide-tooltip__footer {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .guide-tooltip__steps {
+    order: 2;
+  }
+  
+  .guide-tooltip__actions {
+    order: 1;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

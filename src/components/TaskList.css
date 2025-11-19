@@ -1,12 +1,14 @@
 .task-list {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .task-list__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .task-list__header h3 {
@@ -19,12 +21,13 @@
 .task-list__progress {
   font-size: 14px;
   color: #5f6368;
+  font-weight: 500;
 }
 
 .task-list__add-form {
   display: flex;
   gap: 12px;
-  margin: 16px 0;
+  margin-bottom: 8px;
 }
 
 .task-list__input {
@@ -33,32 +36,34 @@
   border: 1px solid #dadce0;
   border-radius: 8px;
   font-size: 16px;
-  font-family: inherit;
+  color: #202124;
+  background-color: white;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .task-list__input:focus {
   outline: none;
-  border-color: #4285f4;
-  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
 }
 
 .task-list__add-button {
-  width: 48px;
-  height: 48px;
+  padding: 0 20px;
+  background-color: #1a73e8;
+  color: white;
   border: none;
   border-radius: 8px;
-  background-color: #4285f4;
-  color: white;
   font-size: 24px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease;
 }
 
 .task-list__add-button:hover {
-  background-color: #3367d6;
+  background-color: #0d62c9;
 }
 
 .task-list__items {
@@ -68,24 +73,24 @@
 }
 
 .task-item {
-  display: flex;
-  align-items: center;
   padding: 16px;
   transition: all 0.2s ease;
+  border: 1px solid #e0e0e0;
 }
 
 .task-item:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
 }
 
 .task-item--completed {
   opacity: 0.7;
+  background-color: #f8f9fa;
 }
 
 .task-item__content {
   display: flex;
-  align-items: center;
-  flex: 1;
+  align-items: flex-start;
   gap: 12px;
 }
 
@@ -94,7 +99,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .task-item__checkbox input {
@@ -113,15 +118,16 @@
   border: 2px solid #dadce0;
   border-radius: 4px;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
-.task-item__checkbox:hover input ~ .task-item__checkmark {
-  background-color: #f8f9fa;
+.task-item__checkbox:hover .task-item__checkmark {
+  border-color: #1a73e8;
 }
 
 .task-item__checkbox input:checked ~ .task-item__checkmark {
-  background-color: #4285f4;
-  border-color: #4285f4;
+  background-color: #1a73e8;
+  border-color: #1a73e8;
 }
 
 .task-item__checkmark:after {
@@ -138,7 +144,7 @@
   left: 6px;
   top: 2px;
   width: 6px;
-  height: 12px;
+  height: 10px;
   border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
@@ -148,31 +154,35 @@
   flex: 1;
   font-size: 16px;
   color: #202124;
-  word-break: break-word;
+  line-height: 1.4;
+  transition: all 0.2s ease;
 }
 
 .task-item--completed .task-item__text {
   text-decoration: line-through;
-  color: #80868b;
+  color: #5f6368;
 }
 
 .task-item__delete {
   background: none;
   border: none;
-  color: #ea4335;
   font-size: 24px;
+  color: #5f6368;
   cursor: pointer;
   width: 32px;
   height: 32px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 8px;
 }
 
 .task-item__delete:hover {
-  background-color: #fce8e6;
+  background-color: #f1f3f4;
+  color: #d93025;
 }
 
 .task-list__empty {
@@ -189,17 +199,22 @@
 .task-list__empty-subtitle {
   font-size: 14px !important;
   color: #80868b !important;
+  font-weight: normal !important;
 }
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 600px) {
+  .task-list {
+    gap: 16px;
+  }
+  
   .task-list__header h3 {
     font-size: 18px;
   }
   
   .task-list__input {
-    font-size: 14px;
     padding: 10px 12px;
+    font-size: 14px;
   }
   
   .task-item {
@@ -208,6 +223,10 @@
   
   .task-item__text {
     font-size: 14px;
+  }
+  
+  .task-list__empty {
+    padding: 32px 16px;
   }
   
   .task-list__empty p {

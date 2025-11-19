@@ -180,13 +180,15 @@ const AccommodationManager = ({ accommodations, onAccommodationsChange, onAccomm
           <h3>{editingAccommodation ? 'Редактирование объекта' : 'Добавление нового объекта'}</h3>
           <form onSubmit={handleSubmit} className="accommodation-form">
             <Input
-              label="Название объекта *"
+              label="Название объекта"
               type="text"
               name="name"
               value={formData.name}
               onChange={handleInputChange}
               placeholder="Уютная квартира в центре города"
               error={errors.name}
+              required={true}
+              helperText="Введите название объекта размещения"
             />
             
             <TextArea
@@ -196,6 +198,7 @@ const AccommodationManager = ({ accommodations, onAccommodationsChange, onAccomm
               onChange={handleInputChange}
               placeholder="Описание объекта размещения..."
               rows="3"
+              helperText="Подробное описание объекта (не обязательно)"
             />
             
             <Input
@@ -205,16 +208,19 @@ const AccommodationManager = ({ accommodations, onAccommodationsChange, onAccomm
               value={formData.address}
               onChange={handleInputChange}
               placeholder="Адрес объекта"
+              helperText="Полный адрес объекта размещения"
             />
             
             <Input
-              label="Цена за ночь (₽) *"
+              label="Цена за ночь (₽)"
               type="number"
               name="price"
               value={formData.price}
               onChange={handleInputChange}
               placeholder="1000"
               error={errors.price}
+              required={true}
+              helperText="Цена за одну ночь проживания в рублях"
             />
             
             <div className="form-actions">

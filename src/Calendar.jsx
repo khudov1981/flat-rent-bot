@@ -71,6 +71,35 @@ const Calendar = ({ selectedAccommodation }) => {
     );
   };
 
+  // Функция для проверки, является ли дата начальной в выбранном диапазоне
+  const isStartDate = (date) => {
+    if (selectedDates.length === 0) return false;
+    const startDate = selectedDates[0];
+    return startDate.getDate() === date.getDate() &&
+      startDate.getMonth() === date.getMonth() &&
+      startDate.getFullYear() === date.getFullYear();
+  };
+
+  // Функция для проверки, является ли дата конечной в выбранном диапазоне
+  const isEndDate = (date) => {
+    if (selectedDates.length === 0) return false;
+    const endDate = selectedDates[selectedDates.length - 1];
+    return endDate.getDate() === date.getDate() &&
+      endDate.getMonth() === date.getMonth() &&
+      endDate.getFullYear() === date.getFullYear();
+  };
+
+  // Функция для проверки, находится ли дата внутри выбранного диапазона (но не на краях)
+  const isInRange = (date) => {
+    if (selectedDates.length < 2) return false;
+    
+    const sortedDates = [...selectedDates].sort((a, b) => a - b);
+    const startDate = sortedDates[0];
+    const endDate = sortedDates[sortedDates.length - 1];
+    
+    return date > startDate && date < endDate;
+  };
+
   // Функция для получения количества дней между двумя датами (включительно)
   const getDaysBetweenDates = (startDate, endDate) => {
     const dates = [];
@@ -257,9 +286,9 @@ const Calendar = ({ selectedAccommodation }) => {
   return (
     <div className="calendar">
       <div className="calendar-header">
-        <button onClick={prevMonth} className="nav-button">‹</button>
+        <button onClick={prevMonth} className="nav-button" aria-label="Предыдущий месяц">‹</button>
         <h2>{getMonthName(currentDate.getMonth())} {currentDate.getFullYear()}</h2>
-        <button onClick={nextMonth} className="nav-button">›</button>
+        <button onClick={nextMonth} className="nav-button" aria-label="Следующий месяц">›</button>
       </div>
       
       <div className="calendar-grid">
@@ -282,16 +311,34 @@ const Calendar = ({ selectedAccommodation }) => {
               
               const isBookedDate = date && isBooked(date);
               const isSelectedDate = date && isSelected(date);
+              const isStartDateValue = date && isStartDate(date);
+              const isEndDateValue = date && isEndDate(date);
+              const isInRangeValue = date && isInRange(date);
+              
+              // Определяем классы для ячейки
+              let dayClasses = 'day';
+              if (day === 0) {
+                dayClasses += ' empty';
+              } else if (isBookedDate) {
+                dayClasses += ' booked';
+              } else if (isStartDateValue) {
+                dayClasses += ' selected start-date';
+              } else if (isEndDateValue) {
+                dayClasses += ' selected end-date';
+              } else if (isSelectedDate) {
+                dayClasses += ' selected';
+              } else if (isInRangeValue) {
+                dayClasses += ' in-range';
+              }
               
               return (
                 <div
                   key={dayIndex}
-                  className={`day ${
-                    day === 0 ? 'empty' : 
-                    isBookedDate ? 'booked' : 
-                    isSelectedDate ? 'selected' : ''
-                  }`}
+                  className={dayClasses}
                   onClick={() => selectDate(day)}
+                  aria-label={date ? `Дата: ${date.toLocaleDateString('ru-RU')}` : undefined}
+                  aria-selected={isSelectedDate}
+                  aria-disabled={isBookedDate}
                 >
                   {day !== 0 ? day : ''}
                 </div>

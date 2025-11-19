@@ -8,15 +8,17 @@ const Input = ({
   className = '', 
   type = 'text',
   id,
+  required = false,
   ...props 
 }) => {
   const inputClasses = `input ${error ? 'input--error' : ''} ${className}`;
   const helperTextClasses = `input__helper-text ${error ? 'input__helper-text--error' : ''}`;
+  const labelClasses = `input__label ${required ? 'input__label--required' : ''}`;
   
   return (
     <div className="input-container">
       {label && (
-        <label htmlFor={id} className="input__label">
+        <label htmlFor={id} className={labelClasses}>
           {label}
         </label>
       )}
@@ -24,6 +26,7 @@ const Input = ({
         id={id}
         type={type}
         className={inputClasses}
+        required={required}
         {...props}
       />
       {(error || helperText) && (

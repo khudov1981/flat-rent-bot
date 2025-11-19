@@ -1,99 +1,130 @@
 .accommodation-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.accommodation-grid__empty {
+  text-align: center;
+  padding: 40px 20px;
+  grid-column: 1 / -1;
+}
+
+.accommodation-grid__empty p {
+  margin: 0;
+  font-size: 16px;
+  color: #5f6368;
 }
 
 .accommodation-grid__item {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+  position: relative;
+  overflow: hidden;
+}
+
+.accommodation-grid__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.accommodation-grid__item:hover::before {
+  opacity: 1;
 }
 
 .accommodation-grid__item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-color: #d0d0d0;
 }
 
 .accommodation-grid__header {
   margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f3f4;
 }
 
 .accommodation-grid__title {
   margin: 0 0 8px 0;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: #202124;
-  line-height: 1.3;
 }
 
 .accommodation-grid__details {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .accommodation-grid__description {
-  margin: 0 0 12px 0;
+  margin: 0;
   color: #5f6368;
   line-height: 1.5;
   font-size: 14px;
 }
 
 .accommodation-grid__address {
-  margin: 0 0 8px 0;
+  margin: 0;
   color: #5f6368;
   font-size: 14px;
 }
 
 .accommodation-grid__price {
-  margin: 0 0 12px 0;
-  font-weight: 600;
-  color: #202124;
+  margin: 0;
   font-size: 18px;
+  font-weight: 700;
+  color: #1a73e8;
 }
 
 .accommodation-grid__bookings {
-  margin: 0 0 16px 0;
-  color: #4285f4;
-  font-weight: 500;
+  margin: 0;
   font-size: 14px;
+  color: #5f6368;
+  font-weight: 500;
 }
 
 .accommodation-grid__actions {
   display: flex;
-  gap: 8px;
-  justify-content: space-between;
+  gap: 12px;
+  justify-content: flex-end;
 }
 
 .accommodation-grid__action-button {
-  flex: 1;
-  min-width: 0;
-}
-
-.accommodation-grid__empty {
-  text-align: center;
-  padding: 40px 20px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
-}
-
-.accommodation-grid__empty p {
-  margin: 0;
-  color: #5f6368;
-  font-size: 16px;
+  min-width: 36px;
+  padding: 8px 12px;
 }
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 600px) {
   .accommodation-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
+  }
+  
+  .accommodation-grid__item {
+    padding: 16px;
   }
   
   .accommodation-grid__title {
-    font-size: 16px;
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  
+  .accommodation-grid__description,
+  .accommodation-grid__address,
+  .accommodation-grid__bookings {
+    font-size: 13px;
   }
   
   .accommodation-grid__price {
@@ -101,10 +132,20 @@
   }
   
   .accommodation-grid__actions {
-    flex-direction: column;
+    gap: 8px;
   }
   
   .accommodation-grid__action-button {
-    width: 100%;
+    padding: 6px 10px;
+    min-width: 32px;
+    font-size: 13px;
+  }
+  
+  .accommodation-grid__empty {
+    padding: 32px 16px;
+  }
+  
+  .accommodation-grid__empty p {
+    font-size: 14px;
   }
 }

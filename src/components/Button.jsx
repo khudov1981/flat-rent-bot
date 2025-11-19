@@ -9,9 +9,10 @@ const Button = ({
   onClick, 
   type = 'button',
   className = '',
+  fullWidth = false,
   ...props 
 }) => {
-  const buttonClasses = `button button--${variant} button--${size} ${disabled ? 'button--disabled' : ''} ${className}`;
+  const buttonClasses = `button button--${variant} button--${size} ${disabled ? 'button--disabled' : ''} ${fullWidth ? 'button--full-width' : ''} ${className}`;
   
   return (
     <button 
@@ -21,7 +22,9 @@ const Button = ({
       type={type}
       {...props}
     >
-      {children}
+      <span className="button__content">
+        {children}
+      </span>
     </button>
   );
 };

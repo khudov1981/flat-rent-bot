@@ -17,22 +17,38 @@ const Notification = ({
     }
   }, [duration, onClose]);
 
+  // Определяем иконку в зависимости от типа уведомления
+  const getIcon = () => {
+    switch (type) {
+      case 'success':
+        return '✓';
+      case 'warning':
+        return '⚠';
+      case 'error':
+        return '✕';
+      case 'info':
+      default:
+        return 'ℹ';
+    }
+  };
+
   const notificationClasses = `notification notification--${type}`;
 
   return (
     <div className={notificationClasses}>
       <div className="notification__content">
+        <span className="notification__icon">{getIcon()}</span>
         <span className="notification__message">{message}</span>
-        {onClose && (
-          <button 
-            className="notification__close"
-            onClick={onClose}
-            aria-label="Закрыть уведомление"
-          >
-            ×
-          </button>
-        )}
       </div>
+      {onClose && (
+        <button 
+          className="notification__close"
+          onClick={onClose}
+          aria-label="Закрыть уведомление"
+        >
+          ×
+        </button>
+      )}
     </div>
   );
 };

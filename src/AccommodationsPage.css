@@ -1,41 +1,134 @@
 .accommodations-page {
-  max-width: 800px;
+  padding: 20px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.accommodations-page .page-header {
-  text-align: left;
-  margin-bottom: 24px;
+.page-header {
+  text-align: center;
+  margin-bottom: 32px;
 }
 
-.accommodations-page .page-header h2 {
-  margin: 0 0 8px 0;
-  font-size: 24px;
-  font-weight: 600;
+.page-header h2 {
+  margin: 0 0 12px 0;
+  font-size: 32px;
+  font-weight: 700;
   color: #202124;
 }
 
-.accommodations-page .page-header p {
+.page-header p {
   margin: 0;
+  font-size: 18px;
   color: #5f6368;
-  font-size: 16px;
+}
+
+.accommodations-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.accommodations-page__content {
+  margin-bottom: 32px;
+}
+
+.accommodations-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.search-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 250px;
+}
+
+.results-count {
+  color: #5f6368;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sort-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.sort-controls > span {
+  color: #202124;
+  font-weight: 500;
+}
+
+.sort-controls .button {
+  white-space: nowrap;
 }
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 600px) {
   .accommodations-page {
-    padding: 0;
+    padding: 16px;
   }
   
-  .accommodations-page .page-header {
-    padding: 0 12px;
+  .page-header {
+    margin-bottom: 24px;
   }
   
-  .accommodations-page .page-header h2 {
-    font-size: 20px;
+  .page-header h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
   }
   
-  .accommodations-page .page-header p {
-    font-size: 14px;
+  .page-header p {
+    font-size: 16px;
+  }
+  
+  .accommodations-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .accommodations-page__content {
+    margin-bottom: 24px;
+  }
+  
+  .accommodations-controls {
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .search-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .search-input {
+    min-width: auto;
+  }
+  
+  .results-count {
+    text-align: center;
+  }
+  
+  .sort-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .sort-controls > span {
+    text-align: center;
   }
 }

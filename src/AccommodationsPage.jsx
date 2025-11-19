@@ -5,6 +5,7 @@ import Card from './components/Card';
 import Input from './components/Input';
 import Button from './components/Button';
 import StatWidget from './components/StatWidget';
+import Breadcrumbs from './components/Breadcrumbs';
 import './AccommodationsPage.css';
 
 const AccommodationsPage = ({ accommodations = [], onAccommodationsChange, onAccommodationSelect }) => {
@@ -188,8 +189,16 @@ const AccommodationsPage = ({ accommodations = [], onAccommodationsChange, onAcc
     }
   }, []);
 
+  // Элементы хлебных крошек
+  const breadcrumbsItems = [
+    { label: 'Главная', onClick: () => console.log('Главная') },
+    { label: 'Объекты размещения', onClick: null }
+  ];
+
   return (
     <div className="accommodations-page">
+      <Breadcrumbs items={breadcrumbsItems} />
+      
       <div className="page-header">
         <h2>Управление объектами размещения</h2>
         <p>Добавляйте, редактируйте и удаляйте объекты размещения</p>

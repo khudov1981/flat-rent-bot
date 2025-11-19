@@ -9,6 +9,7 @@ import HelpPage from './components/HelpPage'
 import NotificationsPage from './components/NotificationsPage'
 import TasksPage from './components/TasksPage'
 import Card from './components/Card'
+import GuideTooltip from './components/GuideTooltip'
 import { NotificationProvider } from './contexts/NotificationContext'
 import './contexts/NotificationContext.css'
 import './App.css'
@@ -25,6 +26,7 @@ function App() {
     notifications: true,
     language: 'ru'
   })
+  const [currentGuideStep, setCurrentGuideStep] = useState(0)
   const accommodationsPageRef = useRef(null)
 
   useEffect(() => {
@@ -162,6 +164,19 @@ function App() {
     setAppSettings(newSettings)
   }
 
+  // Управление обучающим гидом
+  const handleNextGuideStep = () => {
+    setCurrentGuideStep(prev => prev + 1)
+  }
+
+  const handlePrevGuideStep = () => {
+    setCurrentGuideStep(prev => Math.max(0, prev - 1))
+  }
+
+  const handleCompleteGuide = () => {
+    setCurrentGuideStep(0)
+  }
+
   if (loading) {
     return (
       <div className="app-loading">
@@ -250,6 +265,49 @@ function App() {
           activeTab={activeTab}
           onTabChange={handleTabChange}
         />
+        
+        {/* Обучающий гид */}
+        {activeTab === 'home' && (
+          <GuideTooltip
+            id="home-guide"
+            title="Добро пожаловать!"
+            content="Это главная страница приложения. Здесь вы можете видеть все сегодняшние бронирования."
+            position="top"
+            showOnLoad={currentGuideStep === 0}
+            onNext={handleNextGuideStep}
+            step={1}
+            totalSteps={3}
+          />
+        )}
+        
+        {activeTab === 'accommodations' && (
+          <GuideTooltip
+            id="accommodations-guide"
+            title="Управление объектами"
+            content="Здесь вы можете добавлять, редактировать и удалять объекты размещения. Нажмите 'Добавить объект', чтобы создать новый."
+            position="top"
+            showOnLoad={currentGuideStep === 1}
+            onNext={handleNextGuideStep}
+            onPrev={handlePrevGuideStep}
+            step={2}
+            totalSteps={3}
+          />
+        )}
+        
+        {activeTab === 'calendar' && selectedAccommodation && (
+          <GuideTooltip
+            id="calendar-guide"
+            title="Календарь бронирования"
+            content="Выберите даты для бронирования. Забронированные даты отмечены красным цветом."
+            position="top"
+            showOnLoad={currentGuideStep === 2}
+            onPrev={handlePrevGuideStep}
+            onComplete={handleCompleteGuide}
+            step={3}
+            totalSteps={3}
+            isLastStep={true}
+          />
+        )}
       </div>
     </NotificationProvider>
   )

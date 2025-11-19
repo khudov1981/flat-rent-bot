@@ -1,53 +1,61 @@
 .user-profile {
-  width: 100%;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .user-profile__card {
-  padding: 24px;
+  padding: 32px;
+  text-align: center;
 }
 
 .user-profile__header {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 32px;
 }
 
 .user-profile__avatar {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background-color: #4285f4;
+  background: linear-gradient(135deg, #4285f4 0%, #2169d1 100%);
   color: white;
+  font-size: 32px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  font-weight: 600;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
 }
 
 .user-profile__info {
-  flex: 1;
+  text-align: center;
 }
 
 .user-profile__name {
-  margin: 0 0 4px 0;
-  font-size: 20px;
+  margin: 0 0 8px 0;
+  font-size: 24px;
   font-weight: 600;
   color: #202124;
 }
 
 .user-profile__username {
   margin: 0;
-  color: #5f6368;
   font-size: 16px;
+  color: #5f6368;
+}
+
+.user-profile__settings {
+  text-align: left;
+  margin-bottom: 32px;
 }
 
 .user-profile__settings h4 {
-  margin: 0 0 16px 0;
-  font-size: 18px;
+  margin: 0 0 20px 0;
+  font-size: 20px;
   font-weight: 600;
   color: #202124;
 }
@@ -73,24 +81,25 @@
 .user-profile__setting-label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-size: 16px;
+  gap: 12px;
+  font-weight: 500;
   color: #202124;
+  cursor: pointer;
 }
 
 .user-profile__setting-label input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
-.user-profile__language-select {
-  margin-left: 8px;
-  padding: 8px;
+.user-profile__setting-label select {
+  padding: 8px 12px;
   border: 1px solid #dadce0;
   border-radius: 8px;
-  font-size: 16px;
   background-color: white;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .user-profile__settings-view .user-profile__setting {
@@ -110,23 +119,20 @@
   display: flex;
   gap: 12px;
   justify-content: flex-end;
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .user-profile__edit-button {
   margin-top: 16px;
 }
 
-/* Стили для меню */
 .user-profile__menu {
-  margin-top: 32px;
-  padding-top: 24px;
-  border-top: 1px solid #e0e0e0;
+  text-align: left;
 }
 
 .user-profile__menu h4 {
-  margin: 0 0 16px 0;
-  font-size: 18px;
+  margin: 0 0 20px 0;
+  font-size: 20px;
   font-weight: 600;
   color: #202124;
 }
@@ -134,7 +140,7 @@
 .user-profile__menu-buttons {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 
 .user-profile__menu-button {
@@ -142,89 +148,88 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px 8px;
-  gap: 8px;
-  height: 100%;
+  padding: 20px 16px;
+  height: 100px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.user-profile__menu-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .user-profile__menu-icon {
   font-size: 24px;
+  margin-bottom: 8px;
 }
 
 .user-profile__menu-text {
   font-size: 14px;
   font-weight: 500;
+  color: #202124;
 }
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 600px) {
-  .user-profile__card {
+  .user-profile {
     padding: 16px;
   }
   
-  .user-profile__header {
-    flex-direction: column;
-    text-align: center;
-    margin-bottom: 16px;
-    padding-bottom: 16px;
+  .user-profile__card {
+    padding: 24px 20px;
   }
   
   .user-profile__avatar {
-    width: 80px;
-    height: 80px;
-    font-size: 32px;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    margin-bottom: 12px;
   }
   
   .user-profile__name {
-    font-size: 18px;
+    font-size: 20px;
+    margin-bottom: 6px;
   }
   
   .user-profile__username {
     font-size: 14px;
   }
   
-  .user-profile__settings h4 {
-    font-size: 16px;
+  .user-profile__settings h4,
+  .user-profile__menu h4 {
+    font-size: 18px;
+    margin-bottom: 16px;
   }
   
   .user-profile__setting {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  
-  .user-profile__setting-label {
-    font-size: 14px;
-  }
-  
-  .user-profile__settings-view .user-profile__setting {
-    font-size: 14px;
+    padding: 10px 0;
   }
   
   .user-profile__actions {
     flex-direction: column;
   }
   
-  .user-profile__actions button {
+  .user-profile__actions > * {
     width: 100%;
   }
   
   .user-profile__menu-buttons {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
   
   .user-profile__menu-button {
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 12px;
-    gap: 12px;
+    height: 80px;
+    padding: 16px 12px;
   }
   
   .user-profile__menu-icon {
     font-size: 20px;
+    margin-bottom: 6px;
   }
   
   .user-profile__menu-text {
-    font-size: 16px;
+    font-size: 13px;
   }
 }

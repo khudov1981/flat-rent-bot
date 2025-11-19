@@ -89,21 +89,21 @@ const ClientForm = ({
     if (!clientData.fullName || !clientData.fullName.trim()) {
       newErrors.fullName = 'Пожалуйста, введите ФИО клиента';
     } else if (clientData.fullName.trim().split(' ').filter(part => part.length > 0).length < 2) {
-      newErrors.fullName = 'Пожалуйста, введите полное ФИО';
+      newErrors.fullName = 'Пожалуйста, введите полное ФИО (минимум имя и фамилия)';
     }
     
     if (!clientData.phone || !clientData.phone.trim()) {
       newErrors.phone = 'Пожалуйста, введите номер телефона';
     } else if (!/^[\d\s\-\+\(\)]+$/.test(clientData.phone.trim())) {
-      newErrors.phone = 'Пожалуйста, введите корректный номер телефона';
+      newErrors.phone = 'Пожалуйста, введите корректный номер телефона (только цифры, пробелы, дефисы, скобки и знак +)';
     } else if (clientData.phone.trim().replace(/[\s\-\+\(\)]/g, '').length < 10) {
-      newErrors.phone = 'Номер телефона слишком короткий';
+      newErrors.phone = 'Номер телефона слишком короткий (минимум 10 цифр)';
     }
     
     if (clientData.email && clientData.email.trim()) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(clientData.email.trim())) {
-        newErrors.email = 'Пожалуйста, введите корректный email';
+        newErrors.email = 'Пожалуйста, введите корректный email адрес';
       }
     }
     
@@ -115,6 +115,7 @@ const ClientForm = ({
     e?.preventDefault?.();
     
     if (!validateForm()) {
+      // Добавим визуальную обратную связь при ошибках валидации
       return;
     }
     
@@ -196,6 +197,7 @@ const ClientForm = ({
           onChange={handleInputChange}
           placeholder="Иванов Иван Иванович"
           error={errors.fullName}
+          helperText="Введите полное имя клиента (минимум имя и фамилия)"
         />
         
         <Input
@@ -206,6 +208,7 @@ const ClientForm = ({
           onChange={handleInputChange}
           placeholder="+7 (XXX) XXX-XX-XX"
           error={errors.phone}
+          helperText="Введите номер телефона для связи с клиентом"
         />
         
         <Input
@@ -216,6 +219,7 @@ const ClientForm = ({
           onChange={handleInputChange}
           placeholder="example@email.com"
           error={errors.email}
+          helperText="Email клиента (не обязательно)"
         />
         
         <TextArea

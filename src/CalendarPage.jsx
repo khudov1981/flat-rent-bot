@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import Calendar from './Calendar';
 import Card from './components/Card';
 import StatWidget from './components/StatWidget';
+import Breadcrumbs from './components/Breadcrumbs';
 import './CalendarPage.css';
 
 const CalendarPage = ({ selectedAccommodation }) => {
@@ -62,8 +63,17 @@ const CalendarPage = ({ selectedAccommodation }) => {
     }
   }, []);
 
+  // Элементы хлебных крошек
+  const breadcrumbsItems = [
+    { label: 'Главная', onClick: () => console.log('Главная') },
+    { label: 'Объекты размещения', onClick: () => console.log('Объекты размещения') },
+    { label: selectedAccommodation?.name || 'Календарь бронирования', onClick: null }
+  ];
+
   return (
     <div className="calendar-page">
+      <Breadcrumbs items={breadcrumbsItems} />
+      
       <div className="page-header">
         <h2>Календарь бронирования</h2>
       </div>

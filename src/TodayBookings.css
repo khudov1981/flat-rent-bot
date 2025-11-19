@@ -1,105 +1,143 @@
 .today-bookings {
+  padding: 20px;
   max-width: 800px;
   margin: 0 auto;
 }
 
-.today-bookings .page-header {
-  text-align: left;
+.page-header {
+  text-align: center;
   margin-bottom: 24px;
 }
 
-.today-bookings .page-header h2 {
+.page-header h2 {
   margin: 0 0 8px 0;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 700;
   color: #202124;
 }
 
-.today-bookings .page-header p {
+.page-header p {
   margin: 0;
-  color: #5f6368;
   font-size: 16px;
+  color: #5f6368;
 }
 
 .bookings-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 24px;
 }
 
 .booking-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  padding: 20px;
+  transition: all 0.2s ease;
+  border-left: 4px solid #4285f4;
+}
+
+.booking-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .booking-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 16px;
   margin-bottom: 16px;
-  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f3f4;
 }
 
 .booking-header h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: #202124;
   flex: 1;
 }
 
 .booking-details {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.booking-details .client-name {
-  margin: 0 0 8px 0;
-  font-weight: 600;
+.client-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
   color: #202124;
 }
 
-.booking-details .client-phone {
-  margin: 0 0 8px 0;
+.client-phone {
+  margin: 0;
+  font-size: 16px;
   color: #5f6368;
 }
 
-.booking-details .booking-time {
+.booking-time {
   margin: 0;
-  color: #5f6368;
   font-size: 14px;
+  color: #80868b;
 }
 
 .empty-state {
   text-align: center;
   padding: 40px 20px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .empty-state p {
   margin: 0;
-  color: #5f6368;
   font-size: 16px;
+  color: #5f6368;
 }
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 600px) {
-  .today-bookings .page-header {
-    padding: 0 12px;
+  .today-bookings {
+    padding: 16px;
   }
   
-  .today-bookings .page-header h2 {
-    font-size: 20px;
+  .page-header h2 {
+    font-size: 24px;
+    margin-bottom: 6px;
   }
   
-  .today-bookings .page-header p {
+  .page-header p {
     font-size: 14px;
+  }
+  
+  .booking-card {
+    padding: 16px;
   }
   
   .booking-header {
     flex-direction: column;
-    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+  }
+  
+  .booking-header h3 {
+    font-size: 18px;
+  }
+  
+  .client-name,
+  .client-phone {
+    font-size: 14px;
+  }
+  
+  .booking-time {
+    font-size: 12px;
+  }
+  
+  .empty-state {
+    padding: 32px 16px;
+  }
+  
+  .empty-state p {
+    font-size: 14px;
   }
 }

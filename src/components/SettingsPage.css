@@ -1,27 +1,27 @@
 .settings-page {
+  padding: 20px;
   max-width: 800px;
   margin: 0 auto;
 }
 
-.settings-page .page-header {
-  text-align: left;
+.page-header {
   margin-bottom: 24px;
 }
 
-.settings-page .page-header h2 {
+.page-header h2 {
   margin: 0;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 700;
   color: #202124;
 }
 
 .settings-card {
   margin-bottom: 24px;
-  padding: 24px;
+  padding: 32px;
 }
 
 .settings-section {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .settings-section:last-child {
@@ -29,10 +29,12 @@
 }
 
 .settings-section h3 {
-  margin: 0 0 16px 0;
-  font-size: 18px;
+  margin: 0 0 20px 0;
+  font-size: 20px;
   font-weight: 600;
   color: #202124;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f3f4;
 }
 
 .settings-group {
@@ -54,55 +56,59 @@
 }
 
 .setting-item label {
-  font-size: 16px;
-  color: #202124;
   font-weight: 500;
+  color: #202124;
+  margin: 0;
 }
 
 .setting-item span {
-  font-size: 16px;
   color: #5f6368;
 }
 
 .setting-select {
-  padding: 8px 12px;
+  padding: 10px 12px;
   border: 1px solid #dadce0;
   border-radius: 8px;
-  font-size: 16px;
   background-color: white;
+  font-size: 16px;
   color: #202124;
+  cursor: pointer;
+  min-width: 150px;
+  text-align: right;
 }
 
 .setting-select:disabled {
   background-color: #f1f3f4;
-  color: #80868b;
+  color: #5f6368;
+  cursor: not-allowed;
 }
 
 .setting-checkbox {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   cursor: pointer;
-  font-size: 16px;
+  font-weight: 500;
   color: #202124;
+  margin: 0;
 }
 
 .setting-checkbox input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .settings-description {
-  margin: 0 0 16px 0;
   color: #5f6368;
-  font-size: 14px;
   line-height: 1.5;
+  margin: 0 0 16px 0;
 }
 
 .settings-actions {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid #e0e0e0;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f3f4;
 }
 
 .settings-edit-actions {
@@ -113,16 +119,20 @@
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 600px) {
-  .settings-page .page-header {
-    padding: 0 12px;
+  .settings-page {
+    padding: 16px;
   }
   
-  .settings-page .page-header h2 {
-    font-size: 20px;
+  .page-header h2 {
+    font-size: 24px;
   }
   
   .settings-card {
-    padding: 16px;
+    padding: 24px 20px;
+  }
+  
+  .settings-section h3 {
+    font-size: 18px;
     margin-bottom: 16px;
   }
   
@@ -130,30 +140,19 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-  }
-  
-  .setting-item label {
-    font-size: 14px;
-  }
-  
-  .setting-item span {
-    font-size: 14px;
+    padding: 16px 0;
   }
   
   .setting-select {
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-  
-  .setting-checkbox {
-    font-size: 14px;
+    width: 100%;
+    text-align: left;
   }
   
   .settings-edit-actions {
     flex-direction: column;
   }
   
-  .settings-edit-actions button {
+  .settings-edit-actions > * {
     width: 100%;
   }
 }

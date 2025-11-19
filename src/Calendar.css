@@ -102,6 +102,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
+  position: relative;
 }
 
 .day:hover:not(.empty):not(.booked) {
@@ -112,6 +113,41 @@
 .day.selected {
   background-color: #4285f4;
   color: white;
+}
+
+/* Стили для начальной и конечной даты в диапазоне */
+.day.start-date,
+.day.end-date {
+  background-color: #4285f4;
+  color: white;
+  border-radius: 50%;
+}
+
+/* Стили для дат внутри диапазона */
+.day.in-range {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+  border-radius: 0;
+}
+
+/* Стили для начальной и конечной даты в диапазоне с полукруглыми краями */
+.day.start-date::before,
+.day.end-date::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-color: #e8f0fe;
+  z-index: -1;
+}
+
+.day.start-date::before {
+  left: 0;
+}
+
+.day.end-date::before {
+  right: 0;
 }
 
 .day.booked {
