@@ -89,6 +89,8 @@ function App() {
       })
       
       // Загрузка тестовых данных
+      const today = new Date().toISOString().split('T')[0];
+      
       const testAccommodations = [
         {
           id: '1',
@@ -96,7 +98,17 @@ function App() {
           description: 'Уютная квартира в центре города',
           address: 'ул. Тестовая, д. 1',
           price: 2500,
-          bookings: []
+          bookings: [
+            {
+              id: '1',
+              dates: [today],
+              client: {
+                fullName: 'Иван Иванов',
+                phone: '+7 (999) 123-45-67'
+              },
+              createdAt: new Date().toISOString()
+            }
+          ]
         }
       ]
       setAccommodations(testAccommodations)
