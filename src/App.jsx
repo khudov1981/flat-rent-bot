@@ -166,15 +166,31 @@ function App() {
 
   // Управление обучающим гидом
   const handleNextGuideStep = () => {
+    if (currentGuideStep === 0) {
+      // Переход с первого шага на второй - переключаем вкладку на "accommodations"
+      setActiveTab('accommodations')
+    } else if (currentGuideStep === 1) {
+      // Переход со второго шага на третий - переключаем вкладку на "calendar"
+      setActiveTab('calendar')
+    }
     setCurrentGuideStep(prev => prev + 1)
   }
 
   const handlePrevGuideStep = () => {
+    if (currentGuideStep === 2) {
+      // Переход с третьего шага на второй - переключаем вкладку на "accommodations"
+      setActiveTab('accommodations')
+    } else if (currentGuideStep === 1) {
+      // Переход со второго шага на первый - переключаем вкладку на "home"
+      setActiveTab('home')
+    }
     setCurrentGuideStep(prev => Math.max(0, prev - 1))
   }
 
   const handleCompleteGuide = () => {
     setCurrentGuideStep(0)
+    // После завершения гида возвращаемся на домашнюю вкладку
+    setActiveTab('home')
   }
 
   if (loading) {
