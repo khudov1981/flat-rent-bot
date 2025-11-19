@@ -54,8 +54,6 @@ const TodayBookings = ({ accommodations, onAccommodationSelect }) => {
         <p>{today.toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
       </div>
       
-      <BookingStats accommodations={accommodations} />
-      
       {todayBookings.length === 0 ? (
         <Card className="empty-state">
           <p>На сегодня нет бронирований</p>
@@ -83,6 +81,8 @@ const TodayBookings = ({ accommodations, onAccommodationSelect }) => {
           ))}
         </div>
       )}
+      
+      <BookingStats accommodations={accommodations} />
     </div>
   );
 };
