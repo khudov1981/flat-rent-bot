@@ -8,6 +8,9 @@ const TodayBookings = ({ accommodations, onAccommodationSelect }) => {
   // Получаем текущую дату
   const today = new Date();
   const todayString = today.toISOString().split('T')[0];
+  
+  console.log('Today string:', todayString);
+  console.log('Accommodations:', accommodations);
 
   // Фильтруем бронирования на сегодня
   const todayBookings = [];
@@ -15,10 +18,13 @@ const TodayBookings = ({ accommodations, onAccommodationSelect }) => {
   accommodations.forEach(accommodation => {
     if (accommodation.bookings && accommodation.bookings.length > 0) {
       accommodation.bookings.forEach(booking => {
+        console.log('Booking dates:', booking.dates);
         // Проверяем, есть ли сегодняшняя дата в бронировании
         const isTodayBooked = booking.dates.some(dateString => {
           const bookingDate = new Date(dateString);
-          return bookingDate.toISOString().split('T')[0] === todayString;
+          const bookingDateString = bookingDate.toISOString().split('T')[0];
+          console.log('Comparing:', bookingDateString, 'with', todayString);
+          return bookingDateString === todayString;
         });
 
         if (isTodayBooked) {
@@ -30,6 +36,8 @@ const TodayBookings = ({ accommodations, onAccommodationSelect }) => {
       });
     }
   });
+  
+  console.log('Today bookings:', todayBookings);
 
   // Сортируем бронирования по времени начала бронирования
   todayBookings.sort((a, b) => {
