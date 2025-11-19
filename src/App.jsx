@@ -282,7 +282,7 @@ function App() {
           onTabChange={handleTabChange}
         />
         
-        {/* Обучающий гид */}
+        {/* Обучающий гид отключен по запросу пользователя
         {activeTab === 'home' && (
           <GuideTooltip
             id="home-guide"
@@ -324,6 +324,7 @@ function App() {
             isLastStep={true}
           />
         )}
+        */}
       </div>
     </NotificationProvider>
   )
